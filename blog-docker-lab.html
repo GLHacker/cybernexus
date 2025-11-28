@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup Home Lab with Docker | CyberNexus</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="scanline"></div>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <span class="prompt">root@cybernexus:~#</span> <span class="cursor">_</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">/home</a></li>
+                <li><a href="tools.html">/tools</a></li>
+                <li><a href="blog.html" class="active">/blog</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <article class="blog-post">
+            <h1 class="glitch" data-text="Docker Home Lab Setup">Setting up a Home Lab with Docker</h1>
+            <p class="meta">Posted on Jan 10, 2025 by Admin</p>
+
+            <div class="content">
+                <p>Building a home lab is the best way to learn cybersecurity. Docker makes it lightweight, portable,
+                    and safe. Here is how to get started.</p>
+
+                <h2>Why Docker?</h2>
+                <p>Unlike heavy Virtual Machines (VMs), Docker containers share the host OS kernel, making them
+                    incredibly fast and efficient. You can spin up a vulnerable machine in seconds.</p>
+
+                <h2>Step 1: Install Docker</h2>
+                <p>On Ubuntu/Debian:</p>
+                <pre><code>sudo apt update
+sudo apt install docker.io docker-compose</code></pre>
+
+                <h2>Step 2: Pull Vulnerable Containers</h2>
+                <p>Don't hack real sites! Use these intentionally vulnerable apps:</p>
+
+                <h3>DVWA (Damn Vulnerable Web App)</h3>
+                <pre><code>docker pull vulnerables/web-dvwa
+docker run -rm -it -p 80:80 vulnerables/web-dvwa</code></pre>
+
+                <h3>Juice Shop (OWASP)</h3>
+                <pre><code>docker pull bkimminich/juice-shop
+docker run -rm -p 3000:3000 bkimminich/juice-shop</code></pre>
+
+                <h2>Step 3: Network Isolation</h2>
+                <p>Create a secluded network for your lab so your main network stays safe.</p>
+                <pre><code>docker network create --driver bridge isolated_lab</code></pre>
+
+                <h2>Conclusion</h2>
+                <p>You now have a safe environment to practice SQL Injection, XSS, and more. Happy hacking!</p>
+            </div>
+
+            <div class="cta-section">
+                <p>Need a VPS for your lab?</p>
+                <a href="#" class="btn primary">Get Hostinger VPS</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 CyberNexus. Open Source Knowledge.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

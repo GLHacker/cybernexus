@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyberNexus | Blog & Tutorials</title>
+    <title>Blog y Tutoriales | CyberNexus</title>
     <link rel="stylesheet" href="css/style.css">
     <link
         href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Share+Tech+Mono&display=swap"
@@ -14,14 +14,16 @@
 
 <body>
     <div class="scanline"></div>
+    <div class="overlay"></div>
+
     <header>
         <nav class="container">
             <div class="logo">
                 <span class="prompt">root@cybernexus:~#</span> <span class="cursor">_</span>
             </div>
             <ul class="nav-links">
-                <li><a href="index.html">/home</a></li>
-                <li><a href="tools.html">/tools</a></li>
+                <li><a href="index.html">/inicio</a></li>
+                <li><a href="tools.html">/herramientas</a></li>
                 <li><a href="blog.html" class="active">/blog</a></li>
             </ul>
             <div class="hamburger">
@@ -33,43 +35,70 @@
     <main class="container">
         <section class="hero">
             <h1><span class="highlight">/var/log/blog</span></h1>
-            <p class="subtitle">Latest tutorials, guides, and security news.</p>
+            <p class="subtitle">Últimos tutoriales, guías y noticias de seguridad.</p>
         </section>
 
         <section class="blog-list">
             <div class="main-content">
-                <article class="feature-card" style="text-align: left;">
-                    <h2 style="color: var(--primary-color); margin-bottom: 10px;">Top 10 Kali Linux Tools for 2025</h2>
-                    <p style="margin-bottom: 15px; color: #888;">Posted on Jan 15, 2025 by Admin</p>
-                    <p>Kali Linux remains the undisputed king of penetration testing distributions. In this guide, we
-                        explore the essential tools every ethical hacker needs to master...</p>
+                <!-- Artículo 1 -->
+                <article class="feature-card" style="text-align: left; margin-bottom: 30px;">
+                    <h2 style="color: var(--primary-color); margin-bottom: 10px;">Cómo empezar en ciberseguridad desde
+                        cero (2025)</h2>
+                    <p style="margin-bottom: 15px; color: #888;">Publicado el 20 Ene, 2025 por Admin</p>
+                    <p>La guía definitiva para iniciar tu carrera en seguridad informática. Ruta de aprendizaje,
+                        certificaciones y primeros pasos.</p>
                     <br>
-                    <a href="#" class="btn secondary">Read More</a>
+                    <a href="articulos/1.html" class="btn secondary">Leer Más</a>
                 </article>
 
-                <article class="feature-card" style="text-align: left;">
-                    <h2 style="color: var(--primary-color); margin-bottom: 10px;">Setting up a Home Lab with Docker</h2>
-                    <p style="margin-bottom: 15px; color: #888;">Posted on Jan 10, 2025 by Admin</p>
-                    <p>Learn how to deploy vulnerable machines and security tools safely using Docker containers. A
-                        must-read for beginners...</p>
+                <!-- Artículo 2 -->
+                <article class="feature-card" style="text-align: left; margin-bottom: 30px;">
+                    <h2 style="color: var(--primary-color); margin-bottom: 10px;">Top 10 herramientas de hacking ético
+                        gratuitas</h2>
+                    <p style="margin-bottom: 15px; color: #888;">Publicado el 18 Ene, 2025 por Admin</p>
+                    <p>Las herramientas esenciales que todo pentester debe dominar en Linux y Kali. Nmap, Metasploit,
+                        Wireshark y más.</p>
                     <br>
-                    <a href="#" class="btn secondary">Read More</a>
+                    <a href="articulos/2.html" class="btn secondary">Leer Más</a>
                 </article>
 
-                <article class="feature-card" style="text-align: left;">
-                    <h2 style="color: var(--primary-color); margin-bottom: 10px;">AI in Cybersecurity: Friend or Foe?
+                <!-- Artículo 3 -->
+                <article class="feature-card" style="text-align: left; margin-bottom: 30px;">
+                    <h2 style="color: var(--primary-color); margin-bottom: 10px;">Cómo proteger tu privacidad con VPN
                     </h2>
-                    <p style="margin-bottom: 15px; color: #888;">Posted on Jan 05, 2025 by Admin</p>
-                    <p>Artificial Intelligence is revolutionizing cyber defense, but it's also empowering attackers. We
-                        analyze the current landscape...</p>
+                    <p style="margin-bottom: 15px; color: #888;">Publicado el 15 Ene, 2025 por Admin</p>
+                    <p>En un mundo vigilado, tu privacidad es oro. Aprende cómo funciona una VPN y por qué necesitas
+                        una.</p>
                     <br>
-                    <a href="#" class="btn secondary">Read More</a>
+                    <a href="articulos/3.html" class="btn secondary">Leer Más</a>
+                </article>
+
+                <!-- Artículo 4 -->
+                <article class="feature-card" style="text-align: left; margin-bottom: 30px;">
+                    <h2 style="color: var(--primary-color); margin-bottom: 10px;">Mejores herramientas de IA para
+                        programadores</h2>
+                    <p style="margin-bottom: 15px; color: #888;">Publicado el 10 Ene, 2025 por Admin</p>
+                    <p>Acelera tu flujo de trabajo con estas herramientas de Inteligencia Artificial gratuitas y de
+                        pago.</p>
+                    <br>
+                    <a href="articulos/4.html" class="btn secondary">Leer Más</a>
+                </article>
+
+                <!-- Artículo 5 -->
+                <article class="feature-card" style="text-align: left; margin-bottom: 30px;">
+                    <h2 style="color: var(--primary-color); margin-bottom: 10px;">Cómo crear una web gratis y
+                        monetizarla</h2>
+                    <p style="margin-bottom: 15px; color: #888;">Publicado el 05 Ene, 2025 por Admin</p>
+                    <p>Descubre cómo creamos este mismo sitio usando herramientas gratuitas y cómo puedes hacerlo tú
+                        también.</p>
+                    <br>
+                    <a href="articulos/5.html" class="btn secondary">Leer Más</a>
                 </article>
             </div>
 
-            <aside class="sidebar" style="margin-top: 30px;">
+            <aside class="sidebar">
                 <div class="feature-card">
-                    <h3>Recommended VPNs</h3>
+                    <h3>VPNs Recomendadas</h3>
                     <ul style="list-style: none; text-align: left; margin-top: 10px;">
                         <li style="margin-bottom: 10px;"><a href="#"
                                 style="color: var(--primary-color); text-decoration: none;">> NordVPN (70% OFF)</a></li>
@@ -78,7 +107,7 @@
                     </ul>
                 </div>
                 <div class="feature-card" style="margin-top: 20px;">
-                    <h3>Best Hosting</h3>
+                    <h3>Hosting Top</h3>
                     <ul style="list-style: none; text-align: left; margin-top: 10px;">
                         <li style="margin-bottom: 10px;"><a href="#"
                                 style="color: var(--primary-color); text-decoration: none;">> Hostinger</a></li>
@@ -92,7 +121,9 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 CyberNexus. Open Source Knowledge.</p>
+            <p>&copy; 2025 CyberNexus. Conocimiento de Código Abierto.</p>
+            <br>
+            <a href="#" class="btn donate"><i class="fas fa-coffee"></i> Invítame un Café</a>
         </div>
     </footer>
 

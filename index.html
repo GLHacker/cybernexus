@@ -1,27 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyberNexus | Master Cybersecurity & AI</title>
-    <meta name="description" content="Free resources for Cybersecurity, Ethical Hacking, and AI tools. Tutorials, guides, and tools for developers and security enthusiasts.">
+    <title>CyberNexus | Ciberseguridad, Hacking Ético e IA</title>
+    <meta name="description"
+        content="Recursos gratuitos de Ciberseguridad, Hacking Ético y herramientas de IA. Tutoriales, guías y herramientas para programadores y entusiastas de la seguridad.">
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- Placeholder for FontAwesome, might need a real kit or CDN if this fails -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Analytics (gtag.js) - Placeholder -->
+    <!-- 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-Y"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-XXXXX-Y');
+    </script> 
+    -->
 </head>
+
 <body>
     <div class="scanline"></div>
+    <div class="overlay"></div>
+
     <header>
         <nav class="container">
             <div class="logo">
                 <span class="prompt">root@cybernexus:~#</span> <span class="cursor">_</span>
             </div>
             <ul class="nav-links">
-                <li><a href="index.html" class="active">/home</a></li>
-                <li><a href="tools.html">/tools</a></li>
+                <li><a href="index.html" class="active">/inicio</a></li>
+                <li><a href="tools.html">/herramientas</a></li>
                 <li><a href="blog.html">/blog</a></li>
             </ul>
             <div class="hamburger">
@@ -33,55 +51,93 @@
     <main>
         <section class="hero">
             <div class="container">
-                <h1 class="glitch" data-text="UNLOCK THE DIGITAL FRONTIER">UNLOCK THE DIGITAL FRONTIER</h1>
-                <p class="subtitle">Master <span class="highlight">Cybersecurity</span>, <span class="highlight">Ethical Hacking</span>, and <span class="highlight">AI</span>.</p>
+                <h1 class="glitch" data-text="DESBLOQUEA LA FRONTERA DIGITAL">DESBLOQUEA LA FRONTERA DIGITAL</h1>
+                <p class="subtitle">Domina la <span class="highlight">Ciberseguridad</span>, el <span
+                        class="highlight">Hacking Ético</span> y la <span class="highlight">IA</span>.</p>
+
                 <div class="terminal-window">
                     <div class="terminal-header">
                         <span class="dot red"></span>
                         <span class="dot yellow"></span>
                         <span class="dot green"></span>
+                        <span class="terminal-title">bash --login</span>
                     </div>
                     <div class="terminal-body">
                         <p id="typing-text"></p>
                     </div>
                 </div>
+
                 <div class="cta-buttons">
-                    <a href="blog.html" class="btn primary">Start Learning</a>
-                    <a href="tools.html" class="btn secondary">Access Tools</a>
+                    <a href="blog.html" class="btn primary">Empezar a Aprender</a>
+                    <a href="tools.html" class="btn secondary">Acceder a Herramientas</a>
+                </div>
+
+                <div class="visitor-counter">
+                    <i class="fas fa-eye"></i> Visitas: <span id="counter">Cargando...</span>
                 </div>
             </div>
         </section>
 
+        <section class="about container">
+            <h2 class="section-title">/sobre_nosotros</h2>
+            <p>CyberNexus es una plataforma de conocimiento de código abierto dedicada a empoderar a la próxima
+                generación de profesionales de la seguridad. Ofrecemos herramientas gratuitas, tutoriales en profundidad
+                y las últimas novedades en inteligencia artificial aplicada a la programación y la defensa cibernética.
+            </p>
+        </section>
+
         <section class="features container">
-            <div class="feature-card">
-                <i class="fas fa-user-secret"></i>
-                <h3>Ethical Hacking</h3>
-                <p>Learn penetration testing, Kali Linux, and network security from scratch.</p>
+            <h2 class="section-title">/módulos_principales</h2>
+            <div class="grid-3">
+                <div class="feature-card">
+                    <i class="fas fa-user-secret"></i>
+                    <h3>Hacking Ético</h3>
+                    <p>Aprende pentesting, Kali Linux y seguridad de redes desde cero.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Ciberdefensa</h3>
+                    <p>Protege sistemas y redes. Domina estrategias y herramientas de Blue Team.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-robot"></i>
+                    <h3>IA para Devs</h3>
+                    <p>Aprovecha la Inteligencia Artificial para automatizar tareas y escribir mejor código.</p>
+                </div>
             </div>
-            <div class="feature-card">
-                <i class="fas fa-shield-alt"></i>
-                <h3>Cyber Defense</h3>
-                <p>Protect systems and networks. Master Blue Team strategies and tools.</p>
+        </section>
+
+        <section class="latest-articles container">
+            <h2 class="section-title">/últimos_artículos</h2>
+            <div class="grid-2">
+                <a href="articulos/1.html" class="article-preview">
+                    <h3>Cómo empezar en ciberseguridad</h3>
+                    <p>Guía completa 2025 para principiantes.</p>
+                </a>
+                <a href="articulos/2.html" class="article-preview">
+                    <h3>Top 10 Herramientas Hacking</h3>
+                    <p>Las mejores herramientas gratuitas para Kali Linux.</p>
+                </a>
             </div>
-            <div class="feature-card">
-                <i class="fas fa-robot"></i>
-                <h3>AI for Devs</h3>
-                <p>Leverage Artificial Intelligence to automate tasks and write better code.</p>
-            </div>
+            <br>
+            <a href="blog.html" class="btn secondary small">Ver todos los artículos</a>
         </section>
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 CyberNexus. Open Source Knowledge.</p>
+            <p>&copy; 2025 CyberNexus. Conocimiento de Código Abierto.</p>
             <div class="socials">
                 <a href="#"><i class="fab fa-github"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
                 <a href="#"><i class="fab fa-discord"></i></a>
             </div>
+            <br>
+            <a href="#" class="btn donate"><i class="fas fa-coffee"></i> Invítame un Café</a>
         </div>
     </footer>
 
     <script src="js/script.js"></script>
 </body>
+
 </html>

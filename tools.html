@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyberNexus | Tools</title>
+    <title>Herramientas | CyberNexus</title>
     <link rel="stylesheet" href="css/style.css">
     <link
         href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Share+Tech+Mono&display=swap"
@@ -14,14 +14,16 @@
 
 <body>
     <div class="scanline"></div>
+    <div class="overlay"></div>
+
     <header>
         <nav class="container">
             <div class="logo">
                 <span class="prompt">root@cybernexus:~#</span> <span class="cursor">_</span>
             </div>
             <ul class="nav-links">
-                <li><a href="index.html">/home</a></li>
-                <li><a href="tools.html" class="active">/tools</a></li>
+                <li><a href="index.html">/inicio</a></li>
+                <li><a href="tools.html" class="active">/herramientas</a></li>
                 <li><a href="blog.html">/blog</a></li>
             </ul>
             <div class="hamburger">
@@ -32,41 +34,42 @@
 
     <main class="container">
         <section class="hero">
-            <h1><span class="highlight">/bin/tools</span></h1>
-            <p class="subtitle">Essential utilities for security professionals.</p>
+            <h1><span class="highlight">/bin/herramientas</span></h1>
+            <p class="subtitle">Utilidades esenciales para profesionales de la seguridad.</p>
         </section>
 
         <section class="tools-grid">
             <div class="feature-card">
                 <i class="fas fa-key"></i>
-                <h3>Secure Password Gen</h3>
-                <p>Generate cryptographically strong passwords instantly.</p>
+                <h3>Generador de Contraseñas</h3>
+                <p>Crea contraseñas criptográficamente seguras al instante.</p>
                 <br>
-                <!-- Simple Tool Implementation -->
                 <div class="tool-interface">
-                    <input type="text" id="password-output" readonly placeholder="Generated Password"
+                    <input type="text" id="password-output" readonly placeholder="Contraseña Generada"
                         style="width: 100%; padding: 10px; background: #000; border: 1px solid #00ff41; color: #00ff41; font-family: 'JetBrains Mono'; margin-bottom: 10px;">
-                    <button onclick="generatePassword()" class="btn primary" style="width: 100%;">Generate</button>
+                    <button onclick="generatePassword()" class="btn primary" style="width: 100%;">Generar</button>
                 </div>
             </div>
 
             <div class="feature-card" style="opacity: 0.5;">
                 <i class="fas fa-network-wired"></i>
                 <h3>IP Lookup</h3>
-                <p>Coming Soon...</p>
+                <p>Próximamente...</p>
             </div>
 
             <div class="feature-card" style="opacity: 0.5;">
                 <i class="fas fa-file-code"></i>
-                <h3>Hash Analyzer</h3>
-                <p>Coming Soon...</p>
+                <h3>Analizador de Hash</h3>
+                <p>Próximamente...</p>
             </div>
         </section>
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 CyberNexus. Open Source Knowledge.</p>
+            <p>&copy; 2025 CyberNexus. Conocimiento de Código Abierto.</p>
+            <br>
+            <a href="#" class="btn donate"><i class="fas fa-coffee"></i> Invítame un Café</a>
         </div>
     </footer>
 
