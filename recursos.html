@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursos Gratuitos | CyberNexus</title>
+    <meta name="description"
+        content="Descarga cheatsheets, guías PDF, scripts y herramientas gratuitas de ciberseguridad y hacking ético.">
+    <link rel="stylesheet" href="css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="scanline"></div>
+    <div class="overlay"></div>
+
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <span class="prompt">root@cybernexus:~#</span> <span class="cursor">_</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">/inicio</a></li>
+                <li><a href="tools.html">/herramientas</a></li>
+                <li><a href="blog.html">/blog</a></li>
+                <li><a href="recursos.html" class="active">/recursos</a></li>
+                <li><a href="faq.html">/faq</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1><span class="highlight">/downloads</span></h1>
+            <p class="subtitle">Recursos gratuitos para acelerar tu aprendizaje en ciberseguridad.</p>
+        </section>
+
+        <section class="resources-grid" style="padding: 60px 20px;">
+
+            <!-- 1. Filter System -->
+            <div class="filters" style="text-align: center; margin-bottom: 40px;">
+                <button class="btn secondary small active" onclick="filterResources('all')">Todos</button>
+                <button class="btn secondary small" onclick="filterResources('pdf')">PDFs</button>
+                <button class="btn secondary small" onclick="filterResources('script')">Scripts</button>
+                <button class="btn secondary small" onclick="filterResources('list')">Listas</button>
+            </div>
+
+            <div class="grid-2" id="resource-container">
+                <!-- Recurso 1 -->
+                <div class="feature-card" data-type="pdf">
+                    <i class="fas fa-file-pdf" style="font-size: 3rem; color: #ff0055; margin-bottom: 20px;"></i>
+                    <h3>Cheatsheet de Comandos Linux</h3>
+                    <p>Los 100 comandos más usados en Kali Linux y pentesting.</p>
+                    <!-- 3. Star Rating -->
+                    <div style="color: #ffbd2e; margin: 10px 0;">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        <span style="color: #666; font-size: 0.8rem;">(4.8)</span>
+                    </div>
+                    <!-- 4. Download Counter -->
+                    <p style="font-size: 0.8rem; color: #666; margin-bottom: 15px;"><i class="fas fa-download"></i>
+                        1,240 descargas</p>
+
+                    <button class="btn primary" onclick="showEmailForm('linux-cheatsheet')">Descargar</button>
+                    <!-- 2. Preview Button -->
+                    <button class="btn secondary" onclick="alert('Vista previa no disponible en modo offline')"><i
+                            class="fas fa-eye"></i></button>
+                </div>
+
+                <!-- Recurso 2 -->
+                <div class="feature-card" data-type="script">
+                    <i class="fas fa-code" style="font-size: 3rem; color: #00ff41; margin-bottom: 20px;"></i>
+                    <h3>20 Scripts de Python</h3>
+                    <p>Colección de scripts listos para usar: port scanner, brute force.</p>
+                    <div style="color: #ffbd2e; margin: 10px 0;">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <span style="color: #666; font-size: 0.8rem;">(5.0)</span>
+                    </div>
+                    <p style="font-size: 0.8rem; color: #666; margin-bottom: 15px;"><i class="fas fa-download"></i> 890
+                        descargas</p>
+                    <button class="btn primary" onclick="showEmailForm('python-scripts')">Descargar</button>
+                </div>
+
+                <!-- Recurso 3 -->
+                <div class="feature-card" data-type="pdf">
+                    <i class="fas fa-book" style="font-size: 3rem; color: #ffbd2e; margin-bottom: 20px;"></i>
+                    <h3>Guía Bug Bounty</h3>
+                    <p>Ebook de 50 páginas con metodología y casos.</p>
+                    <div style="color: #ffbd2e; margin: 10px 0;">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="far fa-star"></i>
+                        <span style="color: #666; font-size: 0.8rem;">(4.2)</span>
+                    </div>
+                    <p style="font-size: 0.8rem; color: #666; margin-bottom: 15px;"><i class="fas fa-download"></i>
+                        2,100 descargas</p>
+                    <button class="btn primary" onclick="showEmailForm('bug-bounty-guide')">Descargar</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Request Resource Form -->
+        <section class="container"
+            style="margin-bottom: 60px; background: #111; padding: 30px; border-radius: 8px; border: 1px dashed #333;">
+            <h3 style="color: var(--primary-color); text-align: center; margin-bottom: 20px;">¿No encuentras lo que
+                buscas?</h3>
+            <div style="display: flex; gap: 10px; max-width: 500px; margin: 0 auto;">
+                <input type="text" placeholder="Solicita un recurso..."
+                    style="flex: 1; padding: 10px; background: #000; border: 1px solid #333; color: #fff;">
+                <button class="btn secondary"
+                    onclick="alert('¡Solicitud enviada! Trabajaremos en ello.')">Pedir</button>
+            </div>
+        </section>
+
+        <!-- Modal de Email -->
+        <div id="email-modal"
+            style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; justify-content: center; align-items: center;">
+            <div class="feature-card" style="max-width: 500px; margin: 20px;">
+                <h2 style="color: var(--primary-color); margin-bottom: 20px;">Descarga tu Recurso</h2>
+                <p style="margin-bottom: 20px;">Ingresa tu email y te enviaremos el enlace de descarga al instante.</p>
+                <input type="email" id="user-email" placeholder="tu@email.com"
+                    style="width: 100%; padding: 12px; background: #000; border: 1px solid #333; color: #fff; margin-bottom: 15px; border-radius: 4px; font-family: 'JetBrains Mono';">
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn primary" style="flex: 1;" onclick="submitEmail()">Enviar</button>
+                    <button class="btn secondary" style="flex: 1;" onclick="closeEmailForm()">Cancelar</button>
+                </div>
+                <p style="font-size: 0.8rem; color: #666; margin-top: 15px;">No spam. Solo contenido de calidad.</p>
+            </div>
+        </div>
+
+        <section class="cta-section container" style="margin-top: 60px;">
+            <h2>¿Quieres más contenido exclusivo?</h2>
+            <p style="margin: 20px 0;">Únete a nuestra newsletter y recibe tutoriales avanzados cada semana.</p>
+            <a href="#" class="btn primary">Suscribirse al Newsletter</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 CyberNexus. Conocimiento de Código Abierto.</p>
+            <br>
+            <a href="#" class="btn donate"><i class="fas fa-coffee"></i> Invítame un Café</a>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        let currentResource = '';
+
+        function filterResources(type) {
+            const cards = document.querySelectorAll('.feature-card');
+            cards.forEach(card => {
+                if (type === 'all' || card.getAttribute('data-type') === type) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function showEmailForm(resourceId) {
+            currentResource = resourceId;
+            document.getElementById('email-modal').style.display = 'flex';
+        }
+
+        function closeEmailForm() {
+            document.getElementById('email-modal').style.display = 'none';
+            document.getElementById('user-email').value = '';
+        }
+
+        function submitEmail() {
+            const email = document.getElementById('user-email').value;
+            if (!email || !email.includes('@')) {
+                alert('Por favor ingresa un email válido');
+                return;
+            }
+
+            // Aquí integrarías con tu servicio de email (Mailchimp, ConvertKit, etc.)
+            console.log(`Email: ${email}, Recurso: ${currentResource}`);
+
+            // Simulación de descarga directa
+            const resources = {
+                'linux-cheatsheet': 'downloads/cheatsheet-linux.pdf',
+                'python-scripts': 'downloads/scripts-python.zip',
+                'bug-bounty-guide': 'downloads/guia-bug-bounty.pdf',
+                'google-dorks': 'downloads/google-dorks.pdf',
+                'cert-comparison': 'downloads/certificaciones-2025.pdf',
+                'pentest-checklist': 'downloads/checklist-pentesting.pdf'
+            };
+
+            const fileUrl = resources[currentResource];
+            if (fileUrl) {
+                const link = document.createElement('a');
+                link.href = fileUrl;
+                link.download = fileUrl.split('/').pop();
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                alert('¡Gracias! La descarga ha comenzado.');
+            } else {
+                alert('Error: Recurso no encontrado.');
+            }
+
+            closeEmailForm();
+        }
+    </script>
+</body>
+
+</html>

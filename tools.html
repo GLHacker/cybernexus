@@ -4,12 +4,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Herramientas | CyberNexus</title>
+    <title>Herramientas de Ciberseguridad | CyberNexus</title>
+    <meta name="description"
+        content="12 herramientas gratuitas de ciberseguridad: generador de contraseñas, hash, base64, IP lookup, JWT decoder y más.">
     <link rel="stylesheet" href="css/style.css">
     <link
         href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Share+Tech+Mono&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .tool-box {
+            background: var(--bg-panel);
+            border: 1px solid #222;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .tool-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-family: var(--font-display);
+        }
+
+        .tool-input,
+        .tool-output {
+            width: 100%;
+            padding: 12px;
+            background: #000;
+            border: 1px solid #333;
+            color: var(--primary-color);
+            font-family: var(--font-main);
+            margin-bottom: 10px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .tool-output {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .tool-btn {
+            padding: 10px 20px;
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            cursor: pointer;
+            border-radius: 4px;
+            font-family: var(--font-main);
+            transition: all 0.3s;
+            margin-right: 10px;
+        }
+
+        .tool-btn:hover {
+            background: var(--primary-color);
+            color: #000;
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .tool-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -25,6 +89,8 @@
                 <li><a href="index.html">/inicio</a></li>
                 <li><a href="tools.html" class="active">/herramientas</a></li>
                 <li><a href="blog.html">/blog</a></li>
+                <li><a href="recursos.html">/recursos</a></li>
+                <li><a href="faq.html">/faq</a></li>
             </ul>
             <div class="hamburger">
                 <i class="fas fa-bars"></i>
@@ -34,34 +100,260 @@
 
     <main class="container">
         <section class="hero">
-            <h1><span class="highlight">/bin/herramientas</span></h1>
-            <p class="subtitle">Utilidades esenciales para profesionales de la seguridad.</p>
+            <h1><span class="highlight">/usr/bin/tools</span></h1>
+            <p class="subtitle">12 herramientas esenciales 100% funcionales en tu navegador.</p>
         </section>
 
-        <section class="tools-grid">
-            <div class="feature-card">
-                <i class="fas fa-key"></i>
-                <h3>Generador de Contraseñas</h3>
-                <p>Crea contraseñas criptográficamente seguras al instante.</p>
-                <br>
-                <div class="tool-interface">
-                    <input type="text" id="password-output" readonly placeholder="Contraseña Generada"
-                        style="width: 100%; padding: 10px; background: #000; border: 1px solid #00ff41; color: #00ff41; font-family: 'JetBrains Mono'; margin-bottom: 10px;">
-                    <button onclick="generatePassword()" class="btn primary" style="width: 100%;">Generar</button>
+        <section class="tools-section" style="padding: 60px 20px;">
+            <div class="tool-grid">
+
+                <!-- Tool 1: Password Generator -->
+                <div class="tool-box">
+                    <h3><i class="fas fa-key"></i> 1. Generador de Contraseñas</h3>
+                    <p style="margin-bottom: 15px; color: #888;">Genera contraseñas criptográficamente seguras.</p>
+                    <label>Longitud: <span id="pwd-length-val">16</span></label>
+                    <input type="range" id="pwd-length" min="8" max="64" value="16"
+                        style="width: 100%; margin-bottom: 10px;">
+                    <div style="margin-bottom: 10px;">
+                        <label><input type="checkbox" id="pwd-upper" checked> Mayúsculas</label>
+                        <label><input type="checkbox" id="pwd-lower" checked> Minúsculas</label>
+                        <label><input type="checkbox" id="pwd-numbers" checked> Números</label>
+                        <label><input type="checkbox" id="pwd-symbols" checked> Símbolos</label>
+                    </div>
+                    <input type="text" id="pwd-output" class="tool-output" readonly
+                        placeholder="Contraseña generada...">
+                    <button class="tool-btn" onclick="generatePassword()">Generar</button>
+                    <button class="tool-btn" onclick="copyToClipboard('pwd-output')">Copiar</button>
                 </div>
-            </div>
 
-            <div class="feature-card" style="opacity: 0.5;">
-                <i class="fas fa-network-wired"></i>
-                <h3>IP Lookup</h3>
-                <p>Próximamente...</p>
-            </div>
+                <!-- Tool 2: Hash Generator -->
+                <div class="tool-box">
+                    <h3><i class="fas fa-fingerprint"></i> 2. Generador de Hash</h3>
+                    <p style="margin-bottom: 15px; color: #888;">Genera hashes MD5, SHA1, SHA256.</p>
+                    <input type="text" id="hash-input" class="tool-input" placeholder="Texto a hashear...">
+                    <select id="hash-type" class="tool-input">
+                        <option value="sha1">SHA-1</option>
+                        <option value="sha256">SHA-256</option>
+                        <option value="sha512">SHA-512</option>
+                    </select>
+                    <textarea id="hash-output" class="tool-output" readonly placeholder="Hash generado..."></textarea>
+                    <button class="tool-btn" onclick="generateHash()">Generar Hash</button>
+                    <button class="tool-btn" onclick="copyToClipboard('hash-output')">Copiar</button>
+                </div>
 
-            <div class="feature-card" style="opacity: 0.5;">
-                <i class="fas fa-file-code"></i>
-                <h3>Analizador de Hash</h3>
-                <p>Próximamente...</p>
+                <!-- Tool 3: Base64 Encoder/Decoder -->
+                <div class="tool-box">
+                    <h3><i class="fas fa-code"></i> 3. Base64 Encoder/Decoder</h3>
+                    <p style="margin-bottom: 15px; color: #888;">Codifica y decodifica texto en Base64.</p>
+                    <textarea id="base64-input" class="tool-input"
+                        placeholder="Texto a codificar/decodificar..."></textarea>
+                    <textarea id="base64-output" class="tool-output" readonly placeholder="Resultado..."></textarea>
+                    <button class="tool-btn" onclick="base64Encode()">Codificar</button>
+                    <button class="tool-btn" onclick="base64Decode()">Decodificar</button>
+                    <button class="tool-btn" onclick="copyToClipboard('base64-output')">Copiar</button>
+                </div>
+
+                <!-- Tool 4: URL Encoder/Decoder -->
+                <div class="tool-box">
+                    <h3><i class="fas fa-link"></i> 4. URL Encoder/Decoder</h3>
+                    <p style="margin-bottom: 15px; color: #888;">Codifica y decodifica URLs.</p>
+                    <textarea id="url-input" class="tool-input" placeholder="URL a codificar/decodificar..."></textarea>
+                    <textarea id="url-output" class="tool-output" readonly placeholder="Resultado..."></textarea>
+                    <button class="tool-btn" onclick="urlEncode()">Codificar</button>
+                    <button class="tool-btn" onclick="urlDecode()">Decodificar</button>
+                    <button class="tool-btn" onclick="copyToClipboard('url-output')">Copiar</button>
+                </div>
+
+                <!-- Tool 5: IP Lookup -->
+                <div class="tool-box">
+                    <h3><i class="fas fa-globe"></i> 5. IP Lookup</h3>
+                    <p style="margin-bottom: 15px; color: #888;">Obtén información de geolocalización de una IP.</p>
+                    <input type="text" id="ip-input" class="tool-input" placeholder="Ingresa una IP (ej: 8.8.8.8)">
+                    <textarea id="ip-output" class="tool-output" readonly
+                        placeholder="Información de la IP..."></textarea>
+                    <button class="tool-btn" onclick="lookupIP()">Buscar</button>
+                    <button class="tool-btn" onclick="getMyIP()">Mi IP</button>
+                </div>
+
+                <!-- Tool 6: JWT Decoder -->
+                <div class="tool-box">
+                    <h3><i class="fas fa-unlock"></i> 6. JWT Decoder</h3>
+                    <p style="margin-bottom: 15px; color: #888;">Decodifica JSON Web Tokens.</p>
+                    <textarea id="jwt-input" class="tool-input" placeholder="Pega tu JWT aquí..."></textarea>
+                    <textarea id="jwt-output" class="tool-output" readonly
+                        placeholder="Token decodificado..."></textarea>
+                    <button class="tool-btn" onclick="decodeJWT()">Decodificar</button>
+                    <button class="tool-btn" onclick="copyToClipboard('jwt-output')">Copiar</button>
+                </div>
+
+                <!-- Tool 7: SQL Injection Payloads -->
+                <div class="tool-box">
+                    <h3><i class="fas fa-database"></i> 7. SQL Injection Payloads</h3>
+                    <p style="margin-bottom: 15px; color: #888;">Genera payloads de SQL injection (educativo).</p>
+                    <select id="sqli-type" class="tool-input">
+                        <option value="union">UNION-based</option>
+                        <option value="error">Error-based</option>
+                        <option value="blind">Blind</option>
+                        <option value="time">Time-based</option>
+                    </select>
+                    <textarea id="sqli-output" class="tool-output" readonly
+                        placeholder="Payloads generados..."></textarea>
+                    <button class="tool-btn" onclick="generateSQLi()">Generar Payloads</button>
+                    <button class="tool-btn" onclick="copyToClipboard('sqli-output')">Copiar</button>
+                </div>
+
+                <!-- Tool 8: XSS Payload Generator -->
+                <div class="tool-box">
+                    <h3><i class="fas fa-bug"></i> 8. XSS Payload Generator</h3>
+                    <p style="margin-bottom: 15px; color: #888;">Genera payloads de XSS (educativo).</p>
+                    <select id="xss-type" class="tool-input">
+                        <option value="basic">Básico</option>
+                        <option value="img">IMG tag</option>
+                        <option value="svg">SVG</option>
+                        <option value="event">Event handlers</option>
+                    </select>
+                    <textarea id="xss-output" class="tool-output" readonly placeholder="Payloads XSS..."></textarea>
+                    <button class="tool-btn" onclick="generateXSS()">Generar Payloads</button>
+                    <button class="tool-btn" onclick="copyToClipboard('xss-output')">Copiar</button>
+                </div>
+
+                <!-- Tool 9: Hex/Binary Converter -->
+                <div class="tool-box">
+                    <h3><i class="fas fa-exchange-alt"></i> 9. Hex/Binary/Decimal Converter</h3>
+                    <p style="margin-bottom: 15px; color: #888;">Convierte entre hexadecimal, binario y decimal.</p>
+                    <input type="text" id="converter-input" class="tool-input" placeholder="Ingresa un número...">
+                    <select id="converter-from" class="tool-input">
+                        <option value="dec">Decimal</option>
+                        <option value="hex">Hexadecimal</option>
+                        <option value="bin">Binario</option>
+                    </select>
+                    <textarea id="converter-output" class="tool-output" readonly
+                        placeholder="Conversiones..."></textarea>
+                    <button class="tool-btn" onclick="convertNumber()">Convertir</button>
+                </div>
+
+                <!-- Tool 10: Text Diff Checker -->
+                <div class="tool-box">
+                    <h3><i class="fas fa-not-equal"></i> 10. Text Diff Checker</h3>
+                    <p style="margin-bottom: 15px; color: #888;">Compara dos textos y encuentra diferencias.</p>
+                    <textarea id="diff-text1" class="tool-input" placeholder="Texto original..."></textarea>
+                    <textarea id="diff-text2" class="tool-input" placeholder="Texto modificado..."></textarea>
+                    <textarea id="diff-output" class="tool-output" readonly placeholder="Diferencias..."></textarea>
+                    <button class="tool-btn" onclick="checkDiff()">Comparar</button>
+                </div>
+
+                <!-- Tool 11: Regex Tester -->
+                <div class="tool-box">
+                    <h3><i class="fas fa-search"></i> 11. Regex Tester</h3>
+                    <p style="margin-bottom: 15px; color: #888;">Prueba expresiones regulares en tiempo real.</p>
+                    <input type="text" id="regex-pattern" class="tool-input"
+                        placeholder="Patrón regex (ej: \d{3}-\d{3})">
+                    <textarea id="regex-text" class="tool-input" placeholder="Texto a probar..."></textarea>
+                    <textarea id="regex-output" class="tool-output" readonly placeholder="Coincidencias..."></textarea>
+                    <button class="tool-btn" onclick="testRegex()">Probar Regex</button>
+                </div>
+
+                <!-- Tool 12: Lorem Ipsum Generator -->
+                <div class="tool-box">
+                    <h3><i class="fas fa-paragraph"></i> 12. Lorem Ipsum Generator</h3>
+                    <p style="margin-bottom: 15px; color: #888;">Genera texto de relleno para diseño.</p>
+                    <label>Párrafos: <span id="lorem-count-val">3</span></label>
+                    <input type="range" id="lorem-count" min="1" max="10" value="3"
+                        style="width: 100%; margin-bottom: 10px;">
+                    <textarea id="lorem-output" class="tool-output" readonly placeholder="Texto generado..."></textarea>
+                    <button class="tool-btn" onclick="generateLorem()">Generar</button>
+                    <button class="tool-btn" onclick="copyToClipboard('lorem-output')">Copiar</button>
+                </div>
+
+                <!-- Tool 13: AI Phishing Analyzer -->
+                <div class="tool-box" style="border-color: #00d4ff;">
+                    <h3><i class="fas fa-brain"></i> 13. AI Phishing Analyzer</h3>
+                    <p style="margin-bottom: 15px; color: #888;">Analiza correos sospechosos usando heurística avanzada.
+                    </p>
+                    <textarea id="phish-input" class="tool-input"
+                        placeholder="Pega el contenido del correo sospechoso aquí..."
+                        style="min-height: 150px;"></textarea>
+                    <button class="tool-btn" onclick="analyzePhishing()">Analizar con IA</button>
+                    <div id="phish-result" style="display:none; margin-top: 15px; padding: 15px; border-radius: 4px;">
+                    </div>
+                </div>
+
+                <!-- Tool 14: Smart Password AI -->
+                <div class="tool-box" style="border-color: #00d4ff;">
+                    <h3><i class="fas fa-shield-virus"></i> 14. Smart Password AI</h3>
+                    <p style="margin-bottom: 15px; color: #888;">Análisis de fortaleza de contraseñas con estimación de
+                        tiempo de crackeo.</p>
+                    <input type="text" id="smart-pwd-input" class="tool-input" placeholder="Ingresa una contraseña..."
+                        oninput="analyzePasswordAI()">
+                    <div id="smart-pwd-result" style="margin-top: 10px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span>Score: <strong id="ai-score">0/100</strong></span>
+                            <span id="ai-time">Tiempo: Instantáneo</span>
+                        </div>
+                        <div style="width: 100%; height: 10px; background: #333; border-radius: 5px; overflow: hidden;">
+                            <div id="ai-bar"
+                                style="width: 0%; height: 100%; background: red; transition: width 0.3s, background 0.3s;">
+                            </div>
+                        </div>
+                        <p id="ai-feedback" style="margin-top: 10px; font-size: 0.9rem; color: #aaa;"></p>
+                    </div>
+                </div>
+
+                <!-- Tool 15: Port Scanner (Simulated) -->
+                <div class="tool-box">
+                    <h3><i class="fas fa-network-wired"></i> 15. Port Scanner (Sim)</h3>
+                    <p style="margin-bottom: 15px; color: #888;">Simulador de escaneo de puertos comunes.</p>
+                    <input type="text" id="port-ip" class="tool-input" placeholder="IP Objetivo (ej: 192.168.1.1)">
+                    <button class="tool-btn" onclick="simulatePortScan()">Escanear</button>
+                    <div id="port-results"
+                        style="margin-top: 10px; font-family: 'JetBrains Mono'; font-size: 0.8rem; color: #00ff41;">
+                    </div>
+                </div>
+
+                <!-- Tool 16: MAC Address Lookup -->
+                <div class="tool-box">
+                    <h3><i class="fas fa-barcode"></i> 16. MAC Address Lookup</h3>
+                    <p style="margin-bottom: 15px; color: #888;">Identifica el fabricante por la dirección MAC.</p>
+                    <input type="text" id="mac-input" class="tool-input" placeholder="00:1A:2B:3C:4D:5E">
+                    <input type="text" id="mac-output" class="tool-output" readonly placeholder="Fabricante..."
+                        style="height: 50px; min-height: auto;">
+                    <button class="tool-btn" onclick="lookupMAC()">Buscar</button>
+                </div>
+
+                <!-- Tool 17: Whois Lookup (Link) -->
+                <div class="tool-box">
+                    <h3><i class="fas fa-id-card"></i> 17. Whois Lookup</h3>
+                    <p style="margin-bottom: 15px; color: #888;">Consulta información de dominio (Redirige a servicio
+                        externo).</p>
+                    <input type="text" id="whois-input" class="tool-input" placeholder="dominio.com">
+                    <button class="tool-btn" onclick="whoisLookup()">Consultar Whois</button>
+                </div>
+
+                <!-- Tool 18: Subnet Calculator -->
+                <div class="tool-box">
+                    <h3><i class="fas fa-calculator"></i> 18. Subnet Calculator</h3>
+                    <p style="margin-bottom: 15px; color: #888;">Calcula rangos de IP basados en CIDR.</p>
+                    <input type="text" id="cidr-input" class="tool-input" placeholder="192.168.1.0/24">
+                    <textarea id="subnet-output" class="tool-output" readonly placeholder="Resultados..."></textarea>
+                    <button class="tool-btn" onclick="calcSubnet()">Calcular</button>
+                </div>
+
+                <!-- Tool 19: Hash Analyzer -->
+                <div class="tool-box">
+                    <h3><i class="fas fa-microscope"></i> 19. Hash Analyzer</h3>
+                    <p style="margin-bottom: 15px; color: #888;">Identifica el tipo de hash probable.</p>
+                    <input type="text" id="analyze-hash-input" class="tool-input" placeholder="Pega el hash aquí...">
+                    <div id="hash-id-result" style="margin-top: 10px; color: var(--primary-color);"></div>
+                    <button class="tool-btn" onclick="analyzeHashType()">Analizar</button>
+                </div>
+
             </div>
+        </section>
+
+        <section class="cta-section container" style="margin-top: 60px;">
+            <h2>¿Necesitas más herramientas?</h2>
+            <p style="margin: 20px 0;">Descarga nuestra colección completa de scripts y utilidades.</p>
+            <a href="recursos.html" class="btn primary">Ver Recursos</a>
         </section>
     </main>
 
@@ -69,21 +361,15 @@
         <div class="container">
             <p>&copy; 2025 CyberNexus. Conocimiento de Código Abierto.</p>
             <br>
+            <br>
             <a href="#" class="btn donate"><i class="fas fa-coffee"></i> Invítame un Café</a>
+            <p style="margin-top: 20px; font-size: 0.8rem;"><a href="admin.html"
+                    style="color: #333; text-decoration: none;">[Admin Panel]</a></p>
         </div>
     </footer>
 
     <script src="js/script.js"></script>
-    <script>
-        function generatePassword() {
-            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
-            let password = "";
-            for (let i = 0; i < 16; i++) {
-                password += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            document.getElementById('password-output').value = password;
-        }
-    </script>
+    <script src="js/tools.js"></script>
 </body>
 
 </html>

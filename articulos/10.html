@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSINT: Técnicas de investigación de código abierto | CyberNexus</title>
+    <meta name="description"
+        content="Guía completa de OSINT (Open Source Intelligence). Herramientas, técnicas y metodología para investigar personas, empresas y amenazas.">
+    <link rel="stylesheet" href="../css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="scanline"></div>
+    <div class="overlay"></div>
+
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <span class="prompt">root@cybernexus:~#</span> <span class="cursor">_</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">/inicio</a></li>
+                <li><a href="../tools.html">/herramientas</a></li>
+                <li><a href="../blog.html" class="active">/blog</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <article class="blog-post">
+            <h1 class="glitch" data-text="OSINT">OSINT: Técnicas de investigación de código abierto</h1>
+            <p class="meta">Publicado el 20 Ene, 2025 por Admin</p>
+
+            <div class="content">
+                <p>OSINT (Open Source Intelligence) es el arte de recopilar información de fuentes públicas. Usado por
+                    pentesters, periodistas, detectives y agencias de inteligencia.</p>
+
+                <h2>¿Qué es OSINT?</h2>
+                <p>Inteligencia obtenida de fuentes públicas: redes sociales, registros públicos, bases de datos, foros,
+                    etc. Todo legal y accesible para cualquiera.</p>
+
+                <h2>Usos Legítimos</h2>
+                <ul>
+                    <li><strong>Pentesting:</strong> Reconocimiento previo a un ataque simulado</li>
+                    <li><strong>Investigación corporativa:</strong> Due diligence, competencia</li>
+                    <li><strong>Periodismo:</strong> Verificación de hechos</li>
+                    <li><strong>Seguridad personal:</strong> Saber qué información tuya está expuesta</li>
+                </ul>
+
+                <h2>Metodología OSINT</h2>
+
+                <h3>1. Definir el Objetivo</h3>
+                <p>¿Qué buscas? Persona, empresa, dominio, IP, usuario de redes sociales...</p>
+
+                <h3>2. Recopilación Pasiva</h3>
+                <p>Obtener información sin interactuar directamente con el objetivo.</p>
+
+                <h3>3. Análisis y Correlación</h3>
+                <p>Conectar puntos de datos para obtener inteligencia útil.</p>
+
+                <h3>4. Documentación</h3>
+                <p>Registrar hallazgos con capturas y timestamps.</p>
+
+                <h2>Herramientas OSINT Esenciales</h2>
+
+                <h3>Búsqueda de Personas</h3>
+                <ul>
+                    <li><strong>Sherlock:</strong> Encuentra cuentas de usuario en 300+ sitios</li>
+                    <li><strong>Maltego:</strong> Visualización de relaciones entre entidades</li>
+                    <li><strong>Pipl:</strong> Motor de búsqueda de personas</li>
+                </ul>
+
+                <h3>Dominios y Redes</h3>
+                <ul>
+                    <li><strong>Whois:</strong> Información de registro de dominios</li>
+                    <li><strong>Shodan:</strong> Motor de búsqueda de dispositivos IoT</li>
+                    <li><strong>Censys:</strong> Escaneo de internet</li>
+                    <li><strong>VirusTotal:</strong> Análisis de URLs y archivos</li>
+                </ul>
+
+                <h3>Redes Sociales</h3>
+                <ul>
+                    <li><strong>Social-Searcher:</strong> Búsqueda en múltiples redes</li>
+                    <li><strong>TweetDeck:</strong> Monitoreo avanzado de Twitter</li>
+                    <li><strong>IntelX:</strong> Buscador de datos filtrados</li>
+                </ul>
+
+                <h3>Imágenes</h3>
+                <ul>
+                    <li><strong>Google Reverse Image:</strong> Buscar origen de imágenes</li>
+                    <li><strong>TinEye:</strong> Búsqueda inversa de imágenes</li>
+                    <li><strong>Exiftool:</strong> Extraer metadatos de fotos</li>
+                </ul>
+
+                <h2>Técnicas Avanzadas</h2>
+
+                <h3>Google Dorking</h3>
+                <p>Operadores de búsqueda avanzados en Google.</p>
+                <pre><code>site:ejemplo.com filetype:pdf
+inurl:admin
+intitle:"index of" password
+site:pastebin.com "ejemplo.com"</code></pre>
+
+                <h3>Wayback Machine</h3>
+                <p>Ver versiones antiguas de sitios web (archive.org).</p>
+
+                <h3>Análisis de Metadatos</h3>
+                <pre><code>exiftool imagen.jpg
+# Puede revelar: ubicación GPS, cámara, software, fecha</code></pre>
+
+                <h3>Búsqueda de Filtraciones</h3>
+                <p>Verificar si emails o contraseñas han sido comprometidos:</p>
+                <ul>
+                    <li>haveibeenpwned.com</li>
+                    <li>dehashed.com</li>
+                    <li>leakcheck.io</li>
+                </ul>
+
+                <h2>Caso Práctico: Investigar una Empresa</h2>
+                <ol>
+                    <li><strong>Whois del dominio:</strong> Obtener registrante, servidores DNS</li>
+                    <li><strong>Subdominios:</strong> Usar Sublist3r o Amass</li>
+                    <li><strong>Empleados en LinkedIn:</strong> Identificar tecnologías usadas</li>
+                    <li><strong>Shodan:</strong> Buscar servicios expuestos</li>
+                    <li><strong>GitHub:</strong> Buscar repos de la empresa (posibles leaks)</li>
+                    <li><strong>Google Dorking:</strong> Documentos internos indexados</li>
+                </ol>
+
+                <h2>Herramientas Automatizadas</h2>
+
+                <h3>theHarvester</h3>
+                <pre><code>theHarvester -d ejemplo.com -b google,bing,linkedin</code></pre>
+
+                <h3>Recon-ng</h3>
+                <p>Framework modular de reconocimiento.</p>
+                <pre><code>recon-ng
+marketplace install all
+modules load recon/domains-hosts/google_site_web</code></pre>
+
+                <h3>SpiderFoot</h3>
+                <p>Automatización OSINT con interfaz web.</p>
+
+                <h2>Consideraciones Éticas y Legales</h2>
+                <ul>
+                    <li>OSINT usa solo información pública</li>
+                    <li>No hackees cuentas ni accedas a sistemas sin permiso</li>
+                    <li>Respeta la privacidad y leyes locales</li>
+                    <li>Documenta tus fuentes (importante en investigaciones)</li>
+                </ul>
+
+                <div class="cta-section">
+                    <p>Conviértete en experto OSINT:</p>
+                    <a href="[ENLACE_AFILIADO_CURSO]" class="btn primary">Curso de OSINT en Udemy</a>
+                </div>
+
+                <h2>Recursos para Aprender</h2>
+                <ul>
+                    <li><strong>Libro:</strong> "Open Source Intelligence Techniques" de Michael Bazzell</li>
+                    <li><strong>Comunidad:</strong> r/OSINT en Reddit</li>
+                    <li><strong>Práctica:</strong> Trace Labs (CTF de OSINT para causas benéficas)</li>
+                </ul>
+            </div>
+
+            <div class="cta-section">
+                <p>Descarga la Guía de Google Dorks (PDF)</p>
+                <a href="#" class="btn secondary"><i class="fas fa-download"></i> Descargar Gratis</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 CyberNexus. Conocimiento de Código Abierto.</p>
+            <br>
+            <a href="#" class="btn donate"><i class="fas fa-coffee"></i> Invítame un Café</a>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+
+</html>

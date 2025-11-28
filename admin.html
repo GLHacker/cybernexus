@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración | CyberNexus</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .admin-container {
+            display: flex;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .admin-sidebar {
+            width: 250px;
+            background: var(--bg-panel);
+            border-right: 1px solid #222;
+            padding: 20px;
+            position: fixed;
+            height: calc(100vh - 80px);
+            overflow-y: auto;
+        }
+
+        .admin-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 40px;
+        }
+
+        .admin-nav-item {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background: rgba(0, 255, 65, 0.05);
+            border: 1px solid #222;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .admin-nav-item:hover,
+        .admin-nav-item.active {
+            background: rgba(0, 255, 65, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        .admin-section {
+            display: none;
+        }
+
+        .admin-section.active {
+            display: block;
+        }
+
+        .stat-card {
+            background: var(--bg-panel);
+            border: 1px solid #222;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .stat-label {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            background: #000;
+            border: 1px solid #333;
+            color: #fff;
+            border-radius: 4px;
+            font-family: var(--font-main);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .btn-admin {
+            padding: 12px 24px;
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            cursor: pointer;
+            border-radius: 4px;
+            font-family: var(--font-main);
+            transition: all 0.3s;
+            margin-right: 10px;
+        }
+
+        .btn-admin:hover {
+            background: var(--primary-color);
+            color: #000;
+        }
+
+        .btn-danger {
+            border-color: #ff0055;
+            color: #ff0055;
+        }
+
+        .btn-danger:hover {
+            background: #ff0055;
+            color: #fff;
+        }
+
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 40px;
+            background: var(--bg-panel);
+            border: 1px solid #222;
+            border-radius: 8px;
+        }
+
+        .table-admin {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .table-admin th,
+        .table-admin td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #222;
+        }
+
+        .table-admin th {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .chart-container {
+            background: var(--bg-panel);
+            border: 1px solid #222;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            height: 300px;
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+        }
+
+        .chart-bar {
+            flex: 1;
+            background: rgba(0, 255, 65, 0.3);
+            border: 1px solid var(--primary-color);
+            border-radius: 4px 4px 0 0;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .chart-bar:hover {
+            background: rgba(0, 255, 65, 0.5);
+        }
+
+        .chart-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scanline"></div>
+    <div class="overlay"></div>
+
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <span class="prompt">root@admin:~#</span> <span class="cursor">_</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">/inicio</a></li>
+                <li><a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Salir</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Login Screen -->
+    <div id="login-screen" class="login-container">
+        <h2 style="color: var(--primary-color); text-align: center; margin-bottom: 30px;">
+            <i class="fas fa-lock"></i> Panel de Administración
+        </h2>
+        <div class="form-group">
+            <label>Usuario</label>
+            <input type="text" id="login-username" placeholder="admin">
+        </div>
+        <div class="form-group">
+            <label>Contraseña</label>
+            <input type="password" id="login-password" placeholder="••••••••">
+        </div>
+        <button class="btn-admin" style="width: 100%;" onclick="login()">Iniciar Sesión</button>
+        <p style="text-align: center; margin-top: 20px; color: #666; font-size: 0.9rem;">
+            Usuario: admin | Contraseña: admin123
+        </p>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="admin-panel" class="admin-container" style="display: none;">
+        <aside class="admin-sidebar">
+            <h3 style="color: var(--primary-color); margin-bottom: 20px;">Menú</h3>
+            <div class="admin-nav-item active" onclick="showSection('dashboard')">
+                <i class="fas fa-chart-line"></i> Dashboard
+            </div>
+            <div class="admin-nav-item" onclick="showSection('content')">
+                <i class="fas fa-file-alt"></i> Contenido
+            </div>
+            <div class="admin-nav-item" onclick="showSection('resources')">
+                <i class="fas fa-download"></i> Recursos
+            </div>
+            <div class="admin-nav-item" onclick="showSection('analytics')">
+                <i class="fas fa-chart-bar"></i> Analíticas
+            </div>
+            <div class="admin-nav-item" onclick="showSection('settings')">
+                <i class="fas fa-cog"></i> Configuración
+            </div>
+            <div class="admin-nav-item" onclick="showSection('users')">
+                <i class="fas fa-users"></i> Usuarios
+            </div>
+        </aside>
+
+        <main class="admin-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="admin-section active">
+                <h2 style="color: var(--primary-color); margin-bottom: 30px;">Dashboard</h2>
+
+                <div class="grid-3">
+                    <div class="stat-card">
+                        <div class="stat-label">Visitas Totales</div>
+                        <div class="stat-number" id="total-visits">0</div>
+                        <p style="color: #888; font-size: 0.85rem;">+12% vs mes anterior</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Artículos Publicados</div>
+                        <div class="stat-number">10</div>
+                        <p style="color: #888; font-size: 0.85rem;">5 nuevos este mes</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Suscriptores Email</div>
+                        <div class="stat-number" id="total-subscribers">0</div>
+                        <p style="color: #888; font-size: 0.85rem;">+8% vs mes anterior</p>
+                    </div>
+                </div>
+
+                <h3 style="color: var(--primary-color); margin: 40px 0 20px;">Visitas por Día (Últimos 7 días)</h3>
+                <div class="chart-container" id="visits-chart"></div>
+
+                <h3 style="color: var(--primary-color); margin: 40px 0 20px;">Artículos Más Visitados</h3>
+                <table class="table-admin">
+                    <thead>
+                        <tr>
+                            <th>Artículo</th>
+                            <th>Visitas</th>
+                            <th>CTR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Bug Bounty: Gana dinero</td>
+                            <td>1,234</td>
+                            <td>3.2%</td>
+                        </tr>
+                        <tr>
+                            <td>Python para Hackers</td>
+                            <td>987</td>
+                            <td>2.8%</td>
+                        </tr>
+                        <tr>
+                            <td>Certificaciones 2025</td>
+                            <td>856</td>
+                            <td>2.5%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Content Management Section -->
+            <section id="content" class="admin-section">
+                <h2 style="color: var(--primary-color); margin-bottom: 30px;">Gestión de Contenido</h2>
+
+                <button class="btn-admin" onclick="showAddArticle()">
+                    <i class="fas fa-plus"></i> Nuevo Artículo
+                </button>
+
+                <div id="article-form"
+                    style="display: none; margin-top: 30px; background: var(--bg-panel); padding: 30px; border: 1px solid #222; border-radius: 8px;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 20px;">Nuevo Artículo</h3>
+                    <div class="form-group">
+                        <label>Título</label>
+                        <input type="text" id="article-title" placeholder="Título del artículo">
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción (Meta)</label>
+                        <input type="text" id="article-meta" placeholder="Descripción para SEO">
+                    </div>
+                    <div class="form-group">
+                        <label>Contenido del Artículo (HTML/Texto)</label>
+
+                        <!-- Smart Templates Toolbar -->
+                        <div style="margin-bottom: 10px; display: flex; gap: 10px;">
+                            <button type="button" class="btn-admin small" onclick="insertTemplate('tutorial')"><i
+                                    class="fas fa-book"></i> Plantilla Tutorial</button>
+                            <button type="button" class="btn-admin small" onclick="insertTemplate('news')"><i
+                                    class="fas fa-newspaper"></i> Plantilla Noticia</button>
+                            <button type="button" class="btn-admin small" onclick="insertTemplate('review')"><i
+                                    class="fas fa-star"></i> Plantilla Review</button>
+                        </div>
+
+                        <!-- Split Screen Editor -->
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; height: 500px;">
+                            <!-- Editor -->
+                            <textarea id="article-content"
+                                style="height: 100%; resize: none; font-family: 'JetBrains Mono'; font-size: 0.9rem; line-height: 1.5;"
+                                placeholder="Escribe tu artículo aquí..." oninput="updatePreview()"></textarea>
+
+                            <!-- Preview -->
+                            <div id="article-preview"
+                                style="height: 100%; overflow-y: auto; background: #fff; color: #000; padding: 20px; border-radius: 4px; border: 1px solid #333;">
+                                <p style="color: #666; text-align: center; margin-top: 200px;">Vista Previa en Vivo</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Categoría</label>
+                        <select id="article-category">
+                            <option>Principiantes</option>
+                            <option>Herramientas</option>
+                            <option>Privacidad</option>
+                            <option>Carrera</option>
+                            <option>Desarrollo</option>
+                        </select>
+                    </div>
+                    <button class="btn-admin" onclick="saveArticle()">Guardar Artículo</button>
+                    <button class="btn-admin btn-danger" onclick="hideAddArticle()">Cancelar</button>
+                </div>
+
+                <h3 style="color: var(--primary-color); margin: 40px 0 20px;">Artículos Existentes</h3>
+                <table class="table-admin">
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Categoría</th>
+                            <th>Fecha</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="articles-list">
+                        <tr>
+                            <td>Cómo empezar en ciberseguridad</td>
+                            <td>Principiantes</td>
+                            <td>2025-01-20</td>
+                            <td>
+                                <button class="btn-admin" style="padding: 6px 12px;">Editar</button>
+                                <button class="btn-admin btn-danger" style="padding: 6px 12px;">Eliminar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Resources Section -->
+            <section id="resources" class="admin-section">
+                <h2 style="color: var(--primary-color); margin-bottom: 30px;">Gestión de Recursos</h2>
+
+                <button class="btn-admin" onclick="alert('Función en desarrollo')">
+                    <i class="fas fa-plus"></i> Nuevo Recurso
+                </button>
+
+                <table class="table-admin" style="margin-top: 30px;">
+                    <thead>
+                        <tr>
+                            <th>Recurso</th>
+                            <th>Descargas</th>
+                            <th>Emails Capturados</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Cheatsheet Linux</td>
+                            <td>234</td>
+                            <td>189</td>
+                            <td><button class="btn-admin" style="padding: 6px 12px;">Editar</button></td>
+                        </tr>
+                        <tr>
+                            <td>Scripts Python</td>
+                            <td>156</td>
+                            <td>142</td>
+                            <td><button class="btn-admin" style="padding: 6px 12px;">Editar</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Analytics Section -->
+            <section id="analytics" class="admin-section">
+                <h2 style="color: var(--primary-color); margin-bottom: 30px;">Analíticas Detalladas</h2>
+
+                <div class="grid-2">
+                    <div class="stat-card">
+                        <h3 style="color: var(--primary-color);">Tráfico por Fuente</h3>
+                        <table class="table-admin">
+                            <tr>
+                                <td>Búsqueda Orgánica</td>
+                                <td>45%</td>
+                            </tr>
+                            <tr>
+                                <td>Directo</td>
+                                <td>30%</td>
+                            </tr>
+                            <tr>
+                                <td>Redes Sociales</td>
+                                <td>15%</td>
+                            </tr>
+                            <tr>
+                                <td>Referidos</td>
+                                <td>10%</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="stat-card">
+                        <h3 style="color: var(--primary-color);">Conversiones</h3>
+                        <table class="table-admin">
+                            <tr>
+                                <td>Email Signups</td>
+                                <td>3.2%</td>
+                            </tr>
+                            <tr>
+                                <td>Clicks Afiliados</td>
+                                <td>2.1%</td>
+                            </tr>
+                            <tr>
+                                <td>Descargas</td>
+                                <td>5.8%</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings" class="admin-section">
+                <h2 style="color: var(--primary-color); margin-bottom: 30px;">Configuración del Sitio</h2>
+
+                <!-- Backup & Restore -->
+                <div class="stat-card" style="border-color: #00d4ff;">
+                    <h3 style="color: #00d4ff; margin-bottom: 20px;"><i class="fas fa-save"></i> Copia de Seguridad</h3>
+                    <p style="margin-bottom: 20px; color: #aaa;">Descarga una copia completa de tu base de datos
+                        (artículos, configuración, estadísticas) o restaura una copia anterior.</p>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="btn-admin" onclick="exportData()" style="border-color: #00d4ff; color: #00d4ff;">
+                            <i class="fas fa-download"></i> Exportar Datos
+                        </button>
+                        <button class="btn-admin" onclick="triggerImport()"
+                            style="border-color: #ffbd2e; color: #ffbd2e;">
+                            <i class="fas fa-upload"></i> Importar Datos
+                        </button>
+                        <input type="file" id="import-file" style="display: none;" onchange="importData(this)">
+                    </div>
+                </div>
+
+                <div class="stat-card" style="margin-top: 30px;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 20px;">Enlaces de Afiliados</h3>
+                    <div class="form-group">
+                        <label>VPN (NordVPN)</label>
+                        <input type="text" id="affiliate-vpn" placeholder="https://nordvpn.com/ref/...">
+                    </div>
+                    <div class="form-group">
+                        <label>Hosting (Hostinger)</label>
+                        <input type="text" id="affiliate-hosting" placeholder="https://hostinger.com/ref/...">
+                    </div>
+                    <div class="form-group">
+                        <label>Cursos (Udemy)</label>
+                        <input type="text" id="affiliate-courses" placeholder="https://udemy.com/ref/...">
+                    </div>
+                    <button class="btn-admin" onclick="saveAffiliateLinks()">Guardar Enlaces</button>
+                </div>
+
+                <div class="stat-card" style="margin-top: 30px;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 20px;">SEO</h3>
+                    <div class="form-group">
+                        <label>Google Analytics ID</label>
+                        <input type="text" id="ga-id" placeholder="UA-XXXXX-Y">
+                    </div>
+                    <div class="form-group">
+                        <label>Meta Description (Home)</label>
+                        <textarea id="meta-desc" style="min-height: 80px;"></textarea>
+                        <div class="stat-card" style="margin-top: 30px; border-color: #00ff41;">
+                            <h3 style="color: #00ff41; margin-bottom: 20px;"><i class="fas fa-link"></i> Guía de
+                                Configuración y Enlaces</h3>
+                            <p style="margin-bottom: 15px; color: #ccc;">Este panel funciona localmente, pero para
+                                activar las funciones de monetización y analítica necesitas cuentas en estos servicios
+                                externos:</p>
+
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 4px;">
+                                    <h4 style="color: #fff; margin-bottom: 5px;">1. Google Analytics</h4>
+                                    <p style="font-size: 0.8rem; color: #888; margin-bottom: 10px;">Para medir el
+                                        tráfico de tu web.</p>
+                                    <a href="https://analytics.google.com/" target="_blank" class="btn-admin small"
+                                        style="width: 100%; text-align: center;">Crear Cuenta <i
+                                            class="fas fa-external-link-alt"></i></a>
+                                </div>
+                                <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 4px;">
+                                    <h4 style="color: #fff; margin-bottom: 5px;">2. NordVPN Affiliate</h4>
+                                    <p style="font-size: 0.8rem; color: #888; margin-bottom: 10px;">Para ganar dinero
+                                        recomendando VPN.</p>
+                                    <a href="https://nordvpn.com/affiliate/" target="_blank" class="btn-admin small"
+                                        style="width: 100%; text-align: center;">Unirse al Programa <i
+                                            class="fas fa-external-link-alt"></i></a>
+                                </div>
+                                <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 4px;">
+                                    <h4 style="color: #fff; margin-bottom: 5px;">3. Hostinger Affiliate</h4>
+                                    <p style="font-size: 0.8rem; color: #888; margin-bottom: 10px;">Monetiza
+                                        recomendando hosting.</p>
+                                    <a href="https://www.hostinger.com/affiliates" target="_blank"
+                                        class="btn-admin small" style="width: 100%; text-align: center;">Unirse al
+                                        Programa <i class="fas fa-external-link-alt"></i></a>
+                                </div>
+                                <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 4px;">
+                                    <h4 style="color: #fff; margin-bottom: 5px;">4. Udemy Affiliate</h4>
+                                    <p style="font-size: 0.8rem; color: #888; margin-bottom: 10px;">Vende cursos de
+                                        ciberseguridad.</p>
+                                    <a href="https://www.udemy.com/affiliate/" target="_blank" class="btn-admin small"
+                                        style="width: 100%; text-align: center;">Unirse al Programa <i
+                                            class="fas fa-external-link-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 30px;">
+                            <button class="btn-admin" onclick="saveSettings()">Guardar Configuración</button>
+                        </div>
+            </section>
+
+            <!-- Users Section -->
+            <section id="users" class="admin-section">
+                <h2 style="color: var(--primary-color); margin-bottom: 30px;">Gestión de Usuarios</h2>
+
+                <button class="btn-admin" onclick="alert('Función en desarrollo')">
+                    <i class="fas fa-user-plus"></i> Nuevo Usuario
+                </button>
+
+                <table class="table-admin" style="margin-top: 30px;">
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Email</th>
+                            <th>Rol</th>
+                            <th>Último Acceso</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>admin</td>
+                            <td>admin@cybernexus.com</td>
+                            <td>Administrador</td>
+                            <td>Hoy</td>
+                            <td><button class="btn-admin" style="padding: 6px 12px;">Editar</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>

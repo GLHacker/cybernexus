@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducción a Bug Bounty: Gana dinero encontrando vulnerabilidades | CyberNexus</title>
+    <meta name="description"
+        content="Guía completa para empezar en Bug Bounty. Plataformas, metodología, herramientas y cómo ganar tus primeros $1000.">
+    <link rel="stylesheet" href="../css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="scanline"></div>
+    <div class="overlay"></div>
+
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <span class="prompt">root@cybernexus:~#</span> <span class="cursor">_</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">/inicio</a></li>
+                <li><a href="../tools.html">/herramientas</a></li>
+                <li><a href="../blog.html" class="active">/blog</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <article class="blog-post">
+            <h1 class="glitch" data-text="Bug Bounty">Introducción a Bug Bounty: Gana dinero encontrando
+                vulnerabilidades</h1>
+            <p class="meta">Publicado el 24 Ene, 2025 por Admin</p>
+
+            <div class="content">
+                <p>Imagina que te paguen por hackear legalmente. Eso es Bug Bounty: empresas como Google, Facebook y
+                    Tesla pagan miles de dólares a quien encuentre fallos de seguridad en sus sistemas.</p>
+
+                <h2>¿Qué es Bug Bounty?</h2>
+                <p>Un programa de recompensas donde empresas ofrecen dinero a investigadores de seguridad (tú) por
+                    reportar vulnerabilidades antes de que los atacantes las exploten.</p>
+
+                <h2>Plataformas Principales</h2>
+
+                <h3>1. HackerOne</h3>
+                <p>La más grande. Más de $230 millones pagados a hackers.</p>
+                <p><strong>Empresas:</strong> Shopify, GitHub, PayPal, Coinbase</p>
+                <p><strong>Pago promedio:</strong> $500 - $10,000 por bug crítico</p>
+
+                <h3>2. Bugcrowd</h3>
+                <p>Competidor directo de HackerOne. Interfaz más amigable.</p>
+                <p><strong>Empresas:</strong> Tesla, Mastercard, OpenAI</p>
+
+                <h3>3. Intigriti</h3>
+                <p>Popular en Europa. Buena para principiantes.</p>
+
+                <h3>4. YesWeHack</h3>
+                <p>Enfocada en Europa y África. Menos competencia.</p>
+
+                <h2>Tipos de Vulnerabilidades Comunes</h2>
+
+                <h3>XSS (Cross-Site Scripting)</h3>
+                <p>Inyectar JavaScript malicioso en una web. Pago: $100 - $2,000</p>
+                <pre><code>&lt;script&gt;alert(document.cookie)&lt;/script&gt;</code></pre>
+
+                <h3>SQL Injection</h3>
+                <p>Manipular bases de datos. Pago: $500 - $10,000</p>
+                <pre><code>' OR '1'='1' --</code></pre>
+
+                <h3>IDOR (Insecure Direct Object Reference)</h3>
+                <p>Acceder a datos de otros usuarios cambiando IDs. Pago: $200 - $5,000</p>
+
+                <h3>SSRF (Server-Side Request Forgery)</h3>
+                <p>Hacer que el servidor haga peticiones en tu nombre. Pago: $1,000 - $15,000</p>
+
+                <h2>Metodología Básica</h2>
+                <ol>
+                    <li><strong>Reconocimiento:</strong> Mapea la aplicación (subdominios, endpoints)</li>
+                    <li><strong>Enumeración:</strong> Identifica tecnologías (Wappalyzer, BuiltWith)</li>
+                    <li><strong>Pruebas:</strong> Usa Burp Suite para interceptar y modificar peticiones</li>
+                    <li><strong>Explotación:</strong> Confirma la vulnerabilidad (PoC)</li>
+                    <li><strong>Reporte:</strong> Documenta con capturas y pasos para reproducir</li>
+                </ol>
+
+                <h2>Herramientas Esenciales</h2>
+                <ul>
+                    <li><strong>Burp Suite:</strong> Proxy para interceptar tráfico HTTP</li>
+                    <li><strong>OWASP ZAP:</strong> Alternativa gratuita a Burp</li>
+                    <li><strong>Subfinder:</strong> Descubrir subdominios</li>
+                    <li><strong>Nuclei:</strong> Escáner de vulnerabilidades automatizado</li>
+                    <li><strong>ffuf:</strong> Fuzzing de directorios y parámetros</li>
+                </ul>
+
+                <h2>Cómo ganar tus primeros $1000</h2>
+                <ol>
+                    <li>Empieza con programas de "baja competencia" (startups pequeñas)</li>
+                    <li>Enfócate en un tipo de vulnerabilidad (ej: XSS)</li>
+                    <li>Lee reportes públicos en HackerOne para aprender</li>
+                    <li>Dedica 2-3 horas diarias durante 3 meses</li>
+                    <li>No te desanimes con los duplicados (es normal)</li>
+                </ol>
+
+                <h2>Errores de Principiantes</h2>
+                <ul>
+                    <li>No leer las reglas del programa (scope, out-of-scope)</li>
+                    <li>Reportar bugs de baja severidad sin impacto real</li>
+                    <li>Usar scanners automáticos sin validar manualmente</li>
+                    <li>Ser impaciente (la triaje puede tardar semanas)</li>
+                </ul>
+
+                <div class="cta-section">
+                    <p>Aprende Bug Bounty de forma estructurada:</p>
+                    <a href="[ENLACE_AFILIADO_CURSO]" class="btn primary">Curso de Bug Bounty en Udemy</a>
+                </div>
+
+                <h2>Casos de Éxito</h2>
+                <p><strong>Santiago López (Argentina):</strong> Ganó $500,000 en 2 años haciendo Bug Bounty part-time.
+                </p>
+                <p><strong>Frans Rosén (Suecia):</strong> Más de $1 millón acumulado. Encontró bugs críticos en Shopify
+                    y Slack.</p>
+
+                <h2>Conclusión</h2>
+                <p>Bug Bounty no es dinero fácil, pero con dedicación y metodología, puedes convertirlo en un ingreso
+                    significativo. Algunos hackers ganan más que ingenieros senior.</p>
+            </div>
+
+            <div class="cta-section">
+                <p>Descarga la Checklist de Bug Bounty (PDF)</p>
+                <a href="#" class="btn secondary"><i class="fas fa-download"></i> Descargar Gratis</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 CyberNexus. Conocimiento de Código Abierto.</p>
+            <br>
+            <a href="#" class="btn donate"><i class="fas fa-coffee"></i> Invítame un Café</a>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+
+</html>

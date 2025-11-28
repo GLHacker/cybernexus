@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cómo configurar un laboratorio de pentesting con VirtualBox | CyberNexus</title>
+    <meta name="description"
+        content="Guía paso a paso para crear tu propio laboratorio de hacking ético usando VirtualBox. Kali Linux, máquinas vulnerables y configuración de red.">
+    <link rel="stylesheet" href="../css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="scanline"></div>
+    <div class="overlay"></div>
+
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <span class="prompt">root@cybernexus:~#</span> <span class="cursor">_</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">/inicio</a></li>
+                <li><a href="../tools.html">/herramientas</a></li>
+                <li><a href="../blog.html" class="active">/blog</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <article class="blog-post">
+            <h1 class="glitch" data-text="Lab Setup">Cómo configurar un laboratorio de pentesting con VirtualBox</h1>
+            <p class="meta">Publicado el 26 Ene, 2025 por Admin</p>
+
+            <div class="content">
+                <p>Practicar hacking en sistemas reales sin permiso es ilegal. La solución: crear tu propio laboratorio
+                    virtual seguro y legal. Aquí te enseño cómo.</p>
+
+                <h2>Requisitos del Sistema</h2>
+                <ul>
+                    <li><strong>RAM:</strong> Mínimo 8GB (recomendado 16GB)</li>
+                    <li><strong>Procesador:</strong> CPU con virtualización (Intel VT-x o AMD-V)</li>
+                    <li><strong>Disco:</strong> 50GB libres mínimo</li>
+                    <li><strong>SO Host:</strong> Windows, macOS o Linux</li>
+                </ul>
+
+                <h2>Paso 1: Instalar VirtualBox</h2>
+                <p>Descarga VirtualBox desde <code>virtualbox.org</code>. Es gratuito y open source.</p>
+                <pre><code># En Linux (Ubuntu/Debian)
+sudo apt update
+sudo apt install virtualbox virtualbox-ext-pack</code></pre>
+
+                <h2>Paso 2: Descargar Kali Linux</h2>
+                <p>Ve a <code>kali.org/get-kali</code> y descarga la imagen para VirtualBox (archivo .ova).</p>
+                <p><strong>Credenciales por defecto:</strong> Usuario: <code>kali</code> | Contraseña: <code>kali</code>
+                </p>
+
+                <h2>Paso 3: Importar Kali en VirtualBox</h2>
+                <ol>
+                    <li>Abre VirtualBox</li>
+                    <li>Archivo → Importar servicio virtualizado</li>
+                    <li>Selecciona el archivo .ova de Kali</li>
+                    <li>Asigna al menos 4GB de RAM y 2 CPUs</li>
+                    <li>Importar</li>
+                </ol>
+
+                <h2>Paso 4: Configurar la Red</h2>
+                <p>Para aislar tu lab de internet:</p>
+                <ol>
+                    <li>Selecciona la VM de Kali → Configuración → Red</li>
+                    <li>Adaptador 1: <strong>Red NAT</strong> (para acceso a internet)</li>
+                    <li>Adaptador 2: <strong>Red Interna</strong> (nombre: "pentest_lab")</li>
+                </ol>
+
+                <h2>Paso 5: Descargar Máquinas Vulnerables</h2>
+                <p>Estas son máquinas intencionalmente vulnerables para practicar:</p>
+
+                <h3>Principiantes</h3>
+                <ul>
+                    <li><strong>Metasploitable 2:</strong> sourceforge.net/projects/metasploitable</li>
+                    <li><strong>DVWA:</strong> Damn Vulnerable Web Application</li>
+                </ul>
+
+                <h3>Intermedios</h3>
+                <ul>
+                    <li><strong>VulnHub:</strong> vulnhub.com (cientos de VMs gratis)</li>
+                    <li><strong>HackTheBox:</strong> Exporta VMs de HTB</li>
+                </ul>
+
+                <h2>Paso 6: Importar Máquina Vulnerable</h2>
+                <pre><code># Ejemplo con Metasploitable 2
+1. Descargar el .zip
+2. Extraer
+3. VirtualBox → Nueva
+4. Tipo: Linux, Versión: Ubuntu (64-bit)
+5. Usar disco existente → Seleccionar .vmdk de Metasploitable
+6. Red: Red Interna (pentest_lab)</code></pre>
+
+                <h2>Paso 7: Primera Prueba</h2>
+                <p>Desde Kali, escanea la red interna:</p>
+                <pre><code>sudo netdiscover -i eth1
+# o
+sudo nmap -sn 192.168.56.0/24</code></pre>
+
+                <p>Deberías ver la IP de Metasploitable. ¡Ahora puedes empezar a hackearla legalmente!</p>
+
+                <h2>Consejos de Seguridad</h2>
+                <ul>
+                    <li>NUNCA conectes máquinas vulnerables directamente a internet</li>
+                    <li>Usa snapshots antes de hacer cambios importantes</li>
+                    <li>Mantén Kali actualizado: <code>sudo apt update && sudo apt full-upgrade</code></li>
+                </ul>
+
+                <div class="cta-section">
+                    <p>¿Necesitas más potencia? Prueba un VPS:</p>
+                    <a href="[ENLACE_AFILIADO_HOSTING]" class="btn primary">Hostinger VPS desde $4/mes</a>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <p>Descarga la Lista de Máquinas Vulnerables Recomendadas (PDF)</p>
+                <a href="#" class="btn secondary"><i class="fas fa-download"></i> Descargar Gratis</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 CyberNexus. Conocimiento de Código Abierto.</p>
+            <br>
+            <a href="#" class="btn donate"><i class="fas fa-coffee"></i> Invítame un Café</a>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+
+</html>

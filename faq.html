@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas Frecuentes | CyberNexus</title>
+    <meta name="description"
+        content="Respuestas a las preguntas más comunes sobre carreras en ciberseguridad, certificaciones y hacking ético.">
+    <link rel="stylesheet" href="css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="scanline"></div>
+    <div class="overlay"></div>
+
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <span class="prompt">root@cybernexus:~#</span> <span class="cursor">_</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">/inicio</a></li>
+                <li><a href="tools.html">/herramientas</a></li>
+                <li><a href="blog.html">/blog</a></li>
+                <li><a href="recursos.html">/recursos</a></li>
+                <li><a href="faq.html" class="active">/faq</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1><span class="highlight">/help</span></h1>
+            <p class="subtitle">Preguntas frecuentes sobre ciberseguridad y hacking ético.</p>
+        </section>
+
+        <section class="faq-section" style="padding: 60px 20px; max-width: 900px; margin: 0 auto;">
+
+            <div class="faq-item feature-card" style="margin-bottom: 20px; text-align: left;">
+                <h3 style="color: var(--primary-color); margin-bottom: 15px; cursor: pointer;"
+                    onclick="toggleFaq(this)">
+                    <i class="fas fa-chevron-down" style="margin-right: 10px; transition: transform 0.3s;"></i>
+                    ¿Puedo aprender ciberseguridad sin experiencia en programación?
+                </h3>
+                <div class="faq-answer" style="display: none; padding-left: 30px;">
+                    <p>Sí, pero será más difícil. Te recomiendo aprender al menos Python básico y Bash scripting. No
+                        necesitas ser un experto programador, pero entender la lógica de programación te ayudará
+                        enormemente.</p>
+                </div>
+            </div>
+
+            <div class="faq-item feature-card" style="margin-bottom: 20px; text-align: left;">
+                <h3 style="color: var(--primary-color); margin-bottom: 15px; cursor: pointer;"
+                    onclick="toggleFaq(this)">
+                    <i class="fas fa-chevron-down" style="margin-right: 10px; transition: transform 0.3s;"></i>
+                    ¿Cuánto tiempo toma conseguir un trabajo en ciberseguridad?
+                </h3>
+                <div class="faq-answer" style="display: none; padding-left: 30px;">
+                    <p>Depende de tu dedicación. Con estudio intensivo (4-6 horas diarias), puedes estar listo para un
+                        puesto junior en 6-12 meses. La clave es combinar certificaciones (CompTIA Security+) con
+                        experiencia práctica (TryHackMe, HackTheBox).</p>
+                </div>
+            </div>
+
+            <div class="faq-item feature-card" style="margin-bottom: 20px; text-align: left;">
+                <h3 style="color: var(--primary-color); margin-bottom: 15px; cursor: pointer;"
+                    onclick="toggleFaq(this)">
+                    <i class="fas fa-chevron-down" style="margin-right: 10px; transition: transform 0.3s;"></i>
+                    ¿Es legal practicar hacking?
+                </h3>
+                <div class="faq-answer" style="display: none; padding-left: 30px;">
+                    <p>Sí, SOLO si lo haces en tus propios sistemas o en plataformas autorizadas (TryHackMe, HackTheBox,
+                        Bug Bounty programs). Hackear sistemas sin permiso es un delito grave en todos los países.</p>
+                </div>
+            </div>
+
+            <div class="faq-item feature-card" style="margin-bottom: 20px; text-align: left;">
+                <h3 style="color: var(--primary-color); margin-bottom: 15px; cursor: pointer;"
+                    onclick="toggleFaq(this)">
+                    <i class="fas fa-chevron-down" style="margin-right: 10px; transition: transform 0.3s;"></i>
+                    ¿Qué certificación debo obtener primero?
+                </h3>
+                <div class="faq-answer" style="display: none; padding-left: 30px;">
+                    <p>Para principiantes absolutos: <strong>CompTIA Security+</strong>. Si ya tienes conocimientos
+                        técnicos: <strong>eJPT</strong> (más práctica y barata). Evita CEH como primera certificación
+                        (muy teórica y cara).</p>
+                </div>
+            </div>
+
+            <div class="faq-item feature-card" style="margin-bottom: 20px; text-align: left;">
+                <h3 style="color: var(--primary-color); margin-bottom: 15px; cursor: pointer;"
+                    onclick="toggleFaq(this)">
+                    <i class="fas fa-chevron-down" style="margin-right: 10px; transition: transform 0.3s;"></i>
+                    ¿Necesito una computadora potente para empezar?
+                </h3>
+                <div class="faq-answer" style="display: none; padding-left: 30px;">
+                    <p>No necesariamente. Con 8GB de RAM y un procesador dual-core puedes empezar. Para laboratorios más
+                        complejos, 16GB es ideal. Alternativamente, puedes usar VPS en la nube (Hostinger, DigitalOcean)
+                        desde $5/mes.</p>
+                </div>
+            </div>
+
+            <div class="faq-item feature-card" style="margin-bottom: 20px; text-align: left;">
+                <h3 style="color: var(--primary-color); margin-bottom: 15px; cursor: pointer;"
+                    onclick="toggleFaq(this)">
+                    <i class="fas fa-chevron-down" style="margin-right: 10px; transition: transform 0.3s;"></i>
+                    ¿Puedo ganar dinero con Bug Bounty siendo principiante?
+                </h3>
+                <div class="faq-answer" style="display: none; padding-left: 30px;">
+                    <p>Sí, pero no esperes ganar mucho al inicio. Los primeros meses serán de aprendizaje. Enfócate en
+                        programas de baja competencia y vulnerabilidades simples (XSS, IDOR). Tus primeros $100-500
+                        pueden tardar 2-3 meses.</p>
+                </div>
+            </div>
+
+            <div class="faq-item feature-card" style="margin-bottom: 20px; text-align: left;">
+                <h3 style="color: var(--primary-color); margin-bottom: 15px; cursor: pointer;"
+                    onclick="toggleFaq(this)">
+                    <i class="fas fa-chevron-down" style="margin-right: 10px; transition: transform 0.3s;"></i>
+                    ¿Debo usar Kali Linux o Parrot OS?
+                </h3>
+                <div class="faq-answer" style="display: none; padding-left: 30px;">
+                    <p>Ambos son excelentes. <strong>Kali Linux</strong> es el estándar de la industria (más
+                        documentación y soporte). <strong>Parrot OS</strong> es más ligero y tiene mejor privacidad por
+                        defecto. Para principiantes, recomiendo Kali.</p>
+                </div>
+            </div>
+
+            <div class="faq-item feature-card" style="margin-bottom: 20px; text-align: left;">
+                <h3 style="color: var(--primary-color); margin-bottom: 15px; cursor: pointer;"
+                    onclick="toggleFaq(this)">
+                    <i class="fas fa-chevron-down" style="margin-right: 10px; transition: transform 0.3s;"></i>
+                    ¿Cuánto gana un profesional de ciberseguridad?
+                </h3>
+                <div class="faq-answer" style="display: none; padding-left: 30px;">
+                    <p>Varía por país y experiencia. En EE.UU.: Junior $60-80k, Mid-level $90-120k, Senior $130-180k. En
+                        Latinoamérica: Junior $15-25k, Mid $30-50k, Senior $60-90k. El trabajo remoto para empresas
+                        extranjeras puede pagar salarios internacionales.</p>
+                </div>
+            </div>
+
+            <div class="faq-item feature-card" style="margin-bottom: 20px; text-align: left;">
+                <h3 style="color: var(--primary-color); margin-bottom: 15px; cursor: pointer;"
+                    onclick="toggleFaq(this)">
+                    <i class="fas fa-chevron-down" style="margin-right: 10px; transition: transform 0.3s;"></i>
+                    ¿Qué es mejor: Red Team o Blue Team?
+                </h3>
+                <div class="faq-answer" style="display: none; padding-left: 30px;">
+                    <p><strong>Red Team</strong> (ataque) es más "cool" pero hay menos puestos. <strong>Blue
+                            Team</strong> (defensa) tiene más demanda laboral. Mi consejo: empieza con Blue Team (SOC
+                        Analyst) para ganar experiencia, luego especialízate en Red Team si te apasiona.</p>
+                </div>
+            </div>
+
+            <div class="faq-item feature-card" style="margin-bottom: 20px; text-align: left;">
+                <h3 style="color: var(--primary-color); margin-bottom: 15px; cursor: pointer;"
+                    onclick="toggleFaq(this)">
+                    <i class="fas fa-chevron-down" style="margin-right: 10px; transition: transform 0.3s;"></i>
+                    ¿Necesito un título universitario?
+                </h3>
+                <div class="faq-answer" style="display: none; padding-left: 30px;">
+                    <p>No es obligatorio, pero ayuda. Muchas empresas grandes lo requieren para pasar filtros de RRHH.
+                        Sin embargo, con certificaciones sólidas (OSCP, CISSP) y experiencia demostrable (GitHub, Bug
+                        Bounty), puedes conseguir excelentes trabajos sin título.</p>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="cta-section container" style="margin-top: 60px;">
+            <h2>¿Tienes más preguntas?</h2>
+            <p style="margin: 20px 0;">Únete a nuestra comunidad en Discord y pregunta lo que quieras.</p>
+            <a href="#" class="btn primary">Unirse a Discord</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 CyberNexus. Conocimiento de Código Abierto.</p>
+            <br>
+            <a href="#" class="btn donate"><i class="fas fa-coffee"></i> Invítame un Café</a>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('i');
+
+            if (answer.style.display === 'none' || answer.style.display === '') {
+                answer.style.display = 'block';
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                answer.style.display = 'none';
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+    </script>
+</body>
+
+</html>

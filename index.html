@@ -41,12 +41,41 @@
                 <li><a href="index.html" class="active">/inicio</a></li>
                 <li><a href="tools.html">/herramientas</a></li>
                 <li><a href="blog.html">/blog</a></li>
+                <li><a href="recursos.html">/recursos</a></li>
+                <li><a href="faq.html">/faq</a></li>
             </ul>
             <div class="hamburger">
                 <i class="fas fa-bars"></i>
             </div>
         </nav>
     </header>
+
+    <!-- 1. News Ticker -->
+    <div class="news-ticker"
+        style="background: #000; border-bottom: 1px solid #333; overflow: hidden; white-space: nowrap; padding: 8px 0;">
+        <div class="ticker-content"
+            style="display: inline-block; animation: ticker 30s linear infinite; color: var(--primary-color); font-family: 'Share Tech Mono';">
+            <span style="margin-right: 50px;">🔴 ÚLTIMA HORA: Nuevo ransomware "DarkSide" detectado en infraestructuras
+                críticas.</span>
+            <span style="margin-right: 50px;">⚠️ VULNERABILIDAD: Actualización urgente para servidores Apache
+                Log4j.</span>
+            <span style="margin-right: 50px;">🛡️ CONSEJO: Activa 2FA en todas tus cuentas hoy mismo.</span>
+            <span style="margin-right: 50px;">📈 TENDENCIA: La demanda de expertos en ciberseguridad crece un
+                300%.</span>
+            <span style="margin-right: 50px;">🔴 ÚLTIMA HORA: Filtración masiva de datos en red social popular.</span>
+        </div>
+    </div>
+    <style>
+        @keyframes ticker {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
 
     <main>
         <section class="hero">
@@ -75,6 +104,86 @@
                 <div class="visitor-counter">
                     <i class="fas fa-eye"></i> Visitas: <span id="counter">Cargando...</span>
                 </div>
+            </div>
+        </section>
+
+        <!-- 2. Live Threat Map (Simulated) -->
+        <section class="container" style="margin-bottom: 60px;">
+            <div
+                style="background: #000; border: 1px solid #333; border-radius: 8px; overflow: hidden; position: relative;">
+                <div
+                    style="padding: 15px; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center;">
+                    <h3 style="color: #ff0055; margin: 0;"><i class="fas fa-globe"></i> Mapa de Amenazas en Tiempo Real
+                    </h3>
+                    <span style="font-size: 0.8rem; color: #888;">LIVE FEED</span>
+                </div>
+                <div
+                    style="height: 300px; background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/World_map_blank_without_borders.svg/2000px-World_map_blank_without_borders.svg.png') no-repeat center center; background-size: cover; position: relative; opacity: 0.3;">
+                    <!-- Simulated attacks -->
+                    <div class="attack-point" style="top: 30%; left: 20%;"></div>
+                    <div class="attack-point" style="top: 40%; left: 70%;"></div>
+                    <div class="attack-point" style="top: 25%; left: 80%;"></div>
+                    <div class="attack-point" style="top: 60%; left: 30%;"></div>
+                    <div class="attack-point" style="top: 50%; left: 50%;"></div>
+                </div>
+                <div
+                    style="position: absolute; bottom: 20px; left: 20px; color: #00ff41; font-family: 'Share Tech Mono';">
+                    <p>> Ataque detectado: IP 192.168.x.x -> Beijing</p>
+                    <p>> Ataque detectado: DDoS -> New York</p>
+                    <p>> SQL Injection bloqueado -> Madrid</p>
+                </div>
+            </div>
+            <style>
+                .attack-point {
+                    position: absolute;
+                    width: 6px;
+                    height: 6px;
+                    background: #ff0055;
+                    border-radius: 50%;
+                    box-shadow: 0 0 10px #ff0055;
+                    animation: ping 2s infinite;
+                }
+
+                @keyframes ping {
+                    0% {
+                        transform: scale(1);
+                        opacity: 1;
+                    }
+
+                    100% {
+                        transform: scale(3);
+                        opacity: 0;
+                    }
+                }
+            </style>
+        </section>
+
+        <!-- 3. Featured Tool Spotlight -->
+        <section class="container" style="margin-bottom: 60px;">
+            <div
+                style="background: linear-gradient(45deg, #111, #0a0a0a); border: 1px solid var(--primary-color); padding: 30px; border-radius: 8px; display: flex; align-items: center; gap: 30px;">
+                <div style="font-size: 4rem; color: var(--primary-color);">
+                    <i class="fas fa-key"></i>
+                </div>
+                <div>
+                    <h3 style="color: #fff; margin-bottom: 10px;">Herramienta Destacada: Generador de Contraseñas</h3>
+                    <p style="color: #ccc; margin-bottom: 20px;">No arriesgues tu seguridad. Crea contraseñas imposibles
+                        de hackear en segundos con nuestra herramienta gratuita.</p>
+                    <a href="tools.html" class="btn primary">Probar Ahora</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Daily Tip Widget -->
+        <section class="container" style="margin-bottom: 60px; display: flex; justify-content: center;">
+            <div
+                style="background: #111; border: 1px solid #ffbd2e; padding: 20px; border-radius: 8px; max-width: 600px; text-align: center; position: relative;">
+                <div
+                    style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #ffbd2e; color: #000; padding: 5px 15px; border-radius: 20px; font-weight: bold;">
+                    <i class="fas fa-lightbulb"></i> Consejo del Día
+                </div>
+                <p style="margin-top: 15px; font-size: 1.1rem; color: #fff;">"Nunca uses la misma contraseña en dos
+                    sitios diferentes. Si uno cae, caen todos. Usa un gestor de contraseñas."</p>
             </div>
         </section>
 
@@ -122,6 +231,27 @@
             <br>
             <a href="blog.html" class="btn secondary small">Ver todos los artículos</a>
         </section>
+
+        <section class="testimonials container">
+            <h2 class="section-title">/testimonios</h2>
+            <div class="grid-3">
+                <div class="feature-card">
+                    <p style="font-style: italic; margin-bottom: 20px;">"Gracias a CyberNexus conseguí mi primer trabajo
+                        como SOC Analyst. Los tutoriales son claros y prácticos."</p>
+                    <p style="color: var(--primary-color); font-weight: bold;">- Carlos M., México</p>
+                </div>
+                <div class="feature-card">
+                    <p style="font-style: italic; margin-bottom: 20px;">"Gané mis primeros $500 en Bug Bounty siguiendo
+                        la guía de Python para Hackers. ¡Increíble recurso!"</p>
+                    <p style="color: var(--primary-color); font-weight: bold;">- Ana R., Argentina</p>
+                </div>
+                <div class="feature-card">
+                    <p style="font-style: italic; margin-bottom: 20px;">"El mejor sitio en español para aprender
+                        ciberseguridad. Contenido de calidad y siempre actualizado."</p>
+                    <p style="color: var(--primary-color); font-weight: bold;">- Luis P., España</p>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -133,11 +263,39 @@
                 <a href="#"><i class="fab fa-discord"></i></a>
             </div>
             <br>
+            <br>
             <a href="#" class="btn donate"><i class="fas fa-coffee"></i> Invítame un Café</a>
+            <p style="margin-top: 20px; font-size: 0.8rem;"><a href="admin.html"
+                    style="color: #333; text-decoration: none;">[Admin Panel]</a></p>
         </div>
     </footer>
 
     <script src="js/script.js"></script>
+
+    <!-- 5. Exit Intent Popup -->
+    <div id="exit-popup"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 20000; justify-content: center; align-items: center;">
+        <div
+            style="background: #111; border: 2px solid var(--primary-color); padding: 40px; border-radius: 8px; max-width: 500px; text-align: center; position: relative;">
+            <button onclick="document.getElementById('exit-popup').style.display='none'"
+                style="position: absolute; top: 10px; right: 10px; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;">&times;</button>
+            <i class="fas fa-gift" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 20px;"></i>
+            <h2 style="color: #fff; margin-bottom: 15px;">¡Espera! No te vayas con las manos vacías</h2>
+            <p style="color: #ccc; margin-bottom: 25px;">Descarga nuestra <strong>Cheatsheet de Hacking Ético
+                    2025</strong> totalmente GRATIS antes de irte.</p>
+            <a href="recursos.html" class="btn primary">Descargar Ahora</a>
+        </div>
+    </div>
+    <script>
+        // Simple Exit Intent Trigger
+        let exitShown = false;
+        document.addEventListener('mouseleave', e => {
+            if (e.clientY < 0 && !exitShown) {
+                document.getElementById('exit-popup').style.display = 'flex';
+                exitShown = true;
+            }
+        });
+    </script>
 </body>
 
 </html>
